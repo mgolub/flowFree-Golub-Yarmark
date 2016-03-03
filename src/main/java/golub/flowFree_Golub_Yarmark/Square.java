@@ -8,15 +8,20 @@ public class Square extends JPanel {
 
 	private CanvasMouseListener listener;
 	private Piece piece1;
-	private Piece peice2;
+	private Piece piece2;
 	private Point middle;
-	
-	
-	
+	private Point enterPoint;
+	private Point exitPoint;
+
 	public void setPiece1(Piece piece1) {
-		this.piece1 = piece1;
+		if (piece1 != this.piece2 /* && this.piece1 != "dot" */) {
+			this.piece1 = piece1;
+		}
 	}
-	public void setPeice2(Piece peice2) {
-		this.peice2 = peice2;
+
+	public void setPiece2(Piece piece2) {
+		if (piece2 != this.piece1 /* && this.piece2 != "dot" */ ) {
+			this.piece2 = piece2;
+		}
 	}
 }
