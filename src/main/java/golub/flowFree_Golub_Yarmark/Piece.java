@@ -6,6 +6,8 @@ import javax.swing.JComponent;
 
 public class Piece extends JComponent{
 	
+	
+	
 	private Color color;
 	private int centerX;
 	private int centerY;
