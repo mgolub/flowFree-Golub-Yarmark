@@ -3,7 +3,7 @@ package golub.flowFree_Golub_Yarmark;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class CanvasMouseListener implements MouseListener {
+public class SquareMouseListener implements MouseListener {
 
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub

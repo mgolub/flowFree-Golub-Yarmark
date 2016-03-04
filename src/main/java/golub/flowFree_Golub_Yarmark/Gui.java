@@ -2,20 +2,17 @@ package golub.flowFree_Golub_Yarmark;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
 
 public class Gui extends JFrame {
 
@@ -29,12 +26,12 @@ public class Gui extends JFrame {
 	private JLabel levelNum;
 	private JLabel movesNum;
 
-	private JButton[][] gameBoard;
+	// private JButton[][] gameBoard;
 	private JButton restart;
 
 	private Square[][] squareGrid;
 	private Level1 level1;
-	private int[][] level;
+	private Color[][] level;
 
 	public Gui() {
 		setTitle("Flow Free");
@@ -47,12 +44,12 @@ public class Gui extends JFrame {
 
 		completePanel.add(topPanel, BorderLayout.NORTH);
 		completePanel.add(boardGrid, BorderLayout.CENTER);
-		getContentPane().add(completePanel);
+		add(completePanel);
+		getContentPane();
 		pack();
 	}
 
 	private void setBoardGame() {
-		gameBoard = new JButton[6][6];
 		squareGrid = new Square[6][6];
 		level1 = new Level1();
 		level = level1.getBoard();
@@ -67,58 +64,15 @@ public class Gui extends JFrame {
 
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
-				squareGrid[i][j] = new Square();// do we need this line of
-												// code???
-				gameBoard[i][j] = new JButton();
-				gameBoard[i][j].setBackground(Color.BLACK);
-				gameBoard[i][j].setPreferredSize(new Dimension(80, 80));
-				gameBoard[i][j].setBorder(new LineBorder(Color.LIGHT_GRAY, 1));
-				boardGrid.add(gameBoard[i][j]);
+				squareGrid[i][j] = new Square();
 
-				// TEMP
-				// GOING TO HAVE TO SWITCH THIS WHEN DOT PIECE FINISHED
-				switch (level[i][j]) {
-				case 1:
-					g2.setColor(Color.GREEN);
-					g2.fillOval(x, y, width, height);
-					g2.dispose();
-					gameBoard[i][j].setIcon(new ImageIcon(circleImg));
-					break;
-				case 2:
-					g2.setColor(Color.YELLOW);
-					g2.fillOval(x, y, width, height);
-					g2.dispose();
-					gameBoard[i][j].setIcon(new ImageIcon(circleImg));
-					break;
-				case 3:
-					g2.setColor(Color.MAGENTA);
-					g2.fillOval(x, y, width, height);
-					g2.dispose();
-					gameBoard[i][j].setIcon(new ImageIcon(circleImg));
-					break;
-				case 4:
-					g2.setColor(Color.RED);
-					g2.fillOval(x, y, width, height);
-					g2.dispose();
-					gameBoard[i][j].setIcon(new ImageIcon(circleImg));
-					break;
-				case 5:
-					g2.setColor(Color.BLUE);
-					g2.fillOval(x, y, width, height);
-					g2.dispose();
-					gameBoard[i][j].setIcon(new ImageIcon(circleImg));
-					break;
-				case 6:
-					g2.setColor(Color.CYAN);
-					g2.fillOval(x, y, width, height);
-					g2.dispose();
-					gameBoard[i][j].setIcon(new ImageIcon(circleImg));
-					break;
+				if (level[i][j] != null) {
+					Piece dot = (new Dot(level1.getColor(i, j)));
+					squareGrid[i][j].setPiece1(dot);
 				}
-
+				boardGrid.add(squareGrid[i][j]);
 			}
 		}
-
 	}
 
 	public void drawCenteredCircle(Graphics2D g, int x, int y, int r, Color color) {

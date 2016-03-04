@@ -1,6 +1,24 @@
 package golub.flowFree_Golub_Yarmark;
 
-public class Line extends Piece{
-	//WOULD IT BE BETTER TO HAVE PIECE AN INTERFACE AND HAVE DOT EXTEND IT????
+import java.awt.Color;
+import java.awt.Graphics;
 
+public class Line extends Piece {
+	private static final long serialVersionUID = 1L;
+
+	private int x;
+	private int y;
+
+	public Line(Color color, int x, int y) {
+		super(color);
+		this.x = x;
+		this.y = y;
+	}
+
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.setColor(this.color);
+		g.fillRect(x, y, getWidth() - (getWidth() / 3), getHeight() - (getHeight() / 2));
+	}
 }

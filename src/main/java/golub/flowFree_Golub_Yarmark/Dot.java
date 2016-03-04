@@ -5,23 +5,20 @@ import java.awt.Graphics;
 
 import javax.swing.JButton;
 
-public class Dot extends JButton{
-	
-	
+public class Dot extends Piece {
+
 	private static final long serialVersionUID = 1L;
-	private Color color;
 	private int x;
 	private int y;
-	
-	public Dot(int x, int y, Color color){
-		this.color = color;
-		this.x = x;
-		this.y = y;
+
+	public Dot(Color color) {
+		super(color);
 	}
-	
-	public void paintComponent(Graphics g){
+
+	@Override
+	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.setColor(color);
-		g.fillOval(x, y, 40, 40);
+		g.setColor(this.color);
+		g.fillOval(10, 10, getWidth() - (getWidth() / 10), getHeight() - (getHeight() / 10));
 	}
 }
