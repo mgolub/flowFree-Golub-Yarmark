@@ -21,7 +21,7 @@ public class Level1 {
 		colors = new Color[6];
 		fillcolorArray();
 		board = new Color[6][6];
-		board[0][0] = colors[1];
+		board[0][0] = colors[0];
 		board[0][1] = colors[1];
 		board[0][2] = colors[2];
 		board[0][4] = colors[3];

@@ -13,8 +13,6 @@ public class Square extends JComponent {
 	private static final long serialVersionUID = 1L;
 
 	private final Color color = Color.BLACK;
-
-	private SquareMouseListener listener;
 	private Piece piece1;
 	private Piece piece2;
 	private Point middle;
@@ -22,12 +20,11 @@ public class Square extends JComponent {
 	private Point exitPoint;
 
 	public Square() {
-		this.listener = new SquareMouseListener();
 		setLayout(new BorderLayout());
 	}
 
 	public void setPiece1(Piece piece1) {
-		if (piece1 != this.piece2 /* && this.piece1 != "dot" */) {
+		if (piece1 != this.piece2 ) {
 			this.piece1 = piece1;
 		}
 	}
@@ -50,4 +47,5 @@ public class Square extends JComponent {
 			this.add(piece1);
 		}
 	}
+
 }

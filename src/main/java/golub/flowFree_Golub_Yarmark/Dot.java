@@ -19,6 +19,6 @@ public class Dot extends Piece {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.setColor(this.color);
-		g.fillOval(10, 10, getWidth() - (getWidth() / 10), getHeight() - (getHeight() / 10));
+		g.fillOval(20, 20, getWidth() - (getWidth() / 2), getHeight() - (getHeight() / 2));
 	}
 }
