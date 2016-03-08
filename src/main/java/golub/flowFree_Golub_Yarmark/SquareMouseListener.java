@@ -8,14 +8,10 @@ import javax.swing.JComponent;
 
 public class SquareMouseListener implements MouseListener {
 	
-	private JComponent component;
-	
-	public SquareMouseListener(JComponent component){
-		this.component = component;
-	}
+	private Square square;
 
-	public SquareMouseListener(Square component2) {
-		component = component2;
+	public SquareMouseListener(Square component) {
+		square = component;
 	}
 
 	public void mouseClicked(MouseEvent arg0) {
