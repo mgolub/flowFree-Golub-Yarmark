@@ -85,6 +85,15 @@ public class Gui extends JFrame {
 				boardGrid.add(squarePanel);
 			}
 		}
+		
+	}
+
+	public Square[][] getSquareGrid() {
+		return squareGrid;
+	}
+
+	public void setSquareGrid(Square[][] squareGrid) {
+		this.squareGrid = squareGrid;
 	}
 
 	public void drawCenteredCircle(Graphics2D g, int x, int y, int r, Color color) {

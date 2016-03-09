@@ -31,14 +31,14 @@ public class Square extends JComponent {
 
 	public void setPiece2(Piece piece2) {
 		if (piece2 != this.piece1 /* && this.piece2 != "dot" */) {
-			this.piece2 = piece2;
+			this.piece1 = piece2;
 		}
-
+	
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
+		
 		g.setColor(this.color);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.WHITE);
@@ -46,6 +46,14 @@ public class Square extends JComponent {
 		if (piece1 != null) {
 			this.add(piece1);
 		}
+		if (piece2 != null){
+			this.add(piece2);
+		}
+		super.paintComponent(g);
+	}
+
+	public void addExitLine(Point exit) {
+		
 	}
 
 }

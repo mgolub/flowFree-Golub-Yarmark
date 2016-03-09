@@ -1,5 +1,7 @@
 package golub.flowFree_Golub_Yarmark;
 
+import java.awt.Color;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -14,8 +16,12 @@ public class SquareMouseListener implements MouseListener {
 		square = component;
 	}
 
-	public void mouseClicked(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent event) {
 		// TODO Auto-generated method stub
+		Piece line = (new Line(Color.WHITE, 1, 35));
+		square.setBackground(Color.WHITE);
+		square.validate();
+		square.repaint();	
 	}
 
 	public void mouseEntered(MouseEvent event) {
@@ -23,12 +29,15 @@ public class SquareMouseListener implements MouseListener {
 		
 	}
 
-	public void mouseExited(MouseEvent arg0) {
+	public void mouseExited(MouseEvent event) {
 		// TODO Auto-generated method stub
+		Point exit = event.getPoint();
+		square.addExitLine(exit);
+		
 		
 	}
 
-	public void mousePressed(MouseEvent arg0) {
+	public void mousePressed(MouseEvent event) {
 		// TODO Auto-generated method stub
 
 	}

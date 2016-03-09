@@ -15,5 +15,24 @@ public class Piece extends JComponent {
 
 	public Piece(Color color) {
 		this.color = color;
+		centerX = this.getWidth()/2;
+		centerY = this.getHeight()/2;
 	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public int getCenterX() {
+		return centerX;
+	}
+
+	public int getCenterY() {
+		return centerY;
+	}
+	
 }
