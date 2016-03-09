@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.util.Stack;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -34,18 +35,21 @@ public class Gui extends JFrame {
 	private Level1 level1;
 	private Color[][] level;
 
+	private Stack<Square> squaresPath; // this will keep track of the squares
+										// you go into as you create a path
+
 	public Gui() {
 		setTitle("Flow Free");
 		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setPanels();
-
 		setLabelButtons();
 		setBoardGame();
 
-		completePanel.add(topPanel, BorderLayout.NORTH);
+		squaresPath = new Stack<Square>();
 
+		completePanel.add(topPanel, BorderLayout.NORTH);
 		completePanel.add(boardGrid, BorderLayout.CENTER);
 		add(completePanel);
 		// This must be last in Gui constructor
@@ -64,16 +68,16 @@ public class Gui extends JFrame {
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		int x = 4;
 		int y = x;
-		int width = 60 - 2 * x;
-		int height = 60 - 2 * y;
+		// int width = 60 - 2 * x;
+		// int height = 60 - 2 * y;
 
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
 				JPanel squarePanel = new JPanel(new BorderLayout());
-				squareGrid[i][j] = new Square();
+				squareGrid[i][j] = new Square(this, i, j);
 				squareGrid[i][j].addMouseListener(new SquareMouseListener(squareGrid[i][j]));
 				if (level[i][j] != null) {
-					Piece dot = (new Dot(level1.getColor(i, j)));
+					Piece dot = (new Dot(level1.getColor(i, j), BorderLayout.CENTER));
 					squareGrid[i][j].setPiece1(dot);
 
 				}
@@ -94,11 +98,12 @@ public class Gui extends JFrame {
 		this.squareGrid = squareGrid;
 	}
 
-	public void drawCenteredCircle(Graphics2D g, int x, int y, int r, Color color) {
-		x = x - (r / 2);
-		y = y - (r / 2);
-		g.setColor(color);
-		g.fillOval(x, y, r, r);
+	public void pushPath(Square sq) {
+		this.squaresPath.push(sq);
+	}
+
+	public Stack<Square> getPath() {
+		return this.squaresPath;
 	}
 
 	private void setLabelButtons() {

@@ -7,8 +7,8 @@ public class Dot extends Piece {
 
 	private static final long serialVersionUID = 1L;
 
-	public Dot(Color color) {
-		super(color);
+	public Dot(Color color, String direction) {
+		super(color, direction);
 	}
 
 	@Override

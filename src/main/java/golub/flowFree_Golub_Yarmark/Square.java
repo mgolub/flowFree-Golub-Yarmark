@@ -4,10 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.util.Stack;
 
 import javax.swing.JComponent;
-
-;
 
 public class Square extends JComponent {
 
@@ -16,9 +15,15 @@ public class Square extends JComponent {
 	private final Color color = Color.BLACK;
 	private Piece piece1;
 	private Piece piece2;
+	private Gui wholeBoard;
+	private int row;
+	private int col;
 
-	public Square() {
+	public Square(Gui gui, int row, int col) {
 		setLayout(new BorderLayout());
+		this.wholeBoard = gui;
+		this.row = row;
+		this.col = col;
 	}
 
 	public void setPiece1(Piece piece1) {
@@ -31,18 +36,20 @@ public class Square extends JComponent {
 		if (piece2 != this.piece1 /* && this.piece2 != "dot" */) {
 			this.piece1 = piece2;
 		}
-
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
-
 		g.setColor(this.color);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.WHITE);
 		g.drawRect(0, 0, getWidth(), getHeight());
 		if (piece1 != null) {
-			this.add(piece1);
+			if (piece1.getClass().equals(Dot.class)) {
+				this.add(piece1);
+			} else if (piece1.getClass().equals(Line.class)) {
+				this.add(piece1, piece1.getDirection());
+	}
 		}
 		if (piece2 != null) {
 			this.add(piece2);
@@ -51,7 +58,21 @@ public class Square extends JComponent {
 	}
 
 	public void addExitLine(Point exit) {
-
 	}
 
+	public void pushPath() {
+		wholeBoard.pushPath(this);
+	}
+
+	public Stack<Square> getPath() {
+		return wholeBoard.getPath();
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public int getCol() {
+		return col;
+	}
 }
