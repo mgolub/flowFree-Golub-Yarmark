@@ -28,7 +28,6 @@ public class Gui extends JFrame {
 	private JLabel levelNum;
 	private JLabel movesNum;
 
-	
 	private JButton restart;
 
 	private Square[][] squareGrid;
@@ -39,18 +38,17 @@ public class Gui extends JFrame {
 		setTitle("Flow Free");
 		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 
 		setPanels();
-		
+
 		setLabelButtons();
 		setBoardGame();
-		
+
 		completePanel.add(topPanel, BorderLayout.NORTH);
-	
+
 		completePanel.add(boardGrid, BorderLayout.CENTER);
 		add(completePanel);
-		//This must be last in Gui constructor
+		// This must be last in Gui constructor
 		getContentPane();
 		setVisible(true);
 		pack();
@@ -77,15 +75,15 @@ public class Gui extends JFrame {
 				if (level[i][j] != null) {
 					Piece dot = (new Dot(level1.getColor(i, j)));
 					squareGrid[i][j].setPiece1(dot);
-					
+
 				}
-				
+
 				squarePanel.add(squareGrid[i][j], BorderLayout.CENTER);
-				squarePanel.setPreferredSize(new Dimension(80,80));
+				squarePanel.setPreferredSize(new Dimension(80, 80));
 				boardGrid.add(squarePanel);
 			}
 		}
-		
+
 	}
 
 	public Square[][] getSquareGrid() {

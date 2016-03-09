@@ -8,6 +8,7 @@ import java.awt.Point;
 import javax.swing.JComponent;
 
 ;
+
 public class Square extends JComponent {
 
 	private static final long serialVersionUID = 1L;
@@ -15,16 +16,13 @@ public class Square extends JComponent {
 	private final Color color = Color.BLACK;
 	private Piece piece1;
 	private Piece piece2;
-	private Point middle;
-	private Point enterPoint;
-	private Point exitPoint;
 
 	public Square() {
 		setLayout(new BorderLayout());
 	}
 
 	public void setPiece1(Piece piece1) {
-		if (piece1 != this.piece2 ) {
+		if (piece1 != this.piece2) {
 			this.piece1 = piece1;
 		}
 	}
@@ -33,12 +31,12 @@ public class Square extends JComponent {
 		if (piece2 != this.piece1 /* && this.piece2 != "dot" */) {
 			this.piece1 = piece2;
 		}
-	
+
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
-		
+
 		g.setColor(this.color);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.WHITE);
@@ -46,14 +44,14 @@ public class Square extends JComponent {
 		if (piece1 != null) {
 			this.add(piece1);
 		}
-		if (piece2 != null){
+		if (piece2 != null) {
 			this.add(piece2);
 		}
 		super.paintComponent(g);
 	}
 
 	public void addExitLine(Point exit) {
-		
+
 	}
 
 }

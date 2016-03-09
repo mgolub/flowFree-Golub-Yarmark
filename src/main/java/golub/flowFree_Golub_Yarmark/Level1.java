@@ -4,17 +4,7 @@ import java.awt.Color;
 
 public class Level1 {
 
-	/*
-	 * IDK IF THIS IS A GOOD IDEA OF HOW TO SET UP THE LEVELS SO MIGHT NEED TO
-	 * MODIFY THIS
-	 * 
-	 * IDEA MAKE A HASHMAP WITH LEVEL NUMBER AS KEY INT[][] AS VALUE
-	 * 
-	 * 1 = GREEN 2 = YELLOW 3 = MAGENTA 4 = RED 5 = BLUE 6 = CYAN
-	 */
-
 	private Color[][] board;
-	// private int[][] board;
 	private Color[] colors;
 
 	public Level1() {
