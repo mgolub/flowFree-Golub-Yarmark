@@ -17,29 +17,27 @@ public class SquareMouseListener implements MouseListener {
 
 	public void mouseEntered(MouseEvent event) {
 		Point p = new Point(event.getX(), event.getY());
-		// this method is called when the mouse moves into a Square
-		// even without clicking
 		if (!square.getPath().isEmpty()) {
 			Square previous = square.getPath().peek();
 			// up
 			if (square.getRow() - previous.getRow() == -1) {
 				// WILL NEED TO GET THE COLOR FORM THE PREVIOUS PIECE
-				square.setPiece1(new Line(Color.RED, p, square.getWidth(), square.getHeight()));
+				square.setPiece1(new Line(Color.RED, p, square.getWidth()));
 				square.repaint();
 			}
 			// down
 			else if (square.getRow() - previous.getRow() == 1) {
-				square.setPiece1(new Line(Color.RED, p, square.getWidth(), square.getHeight()));
+				square.setPiece1(new Line(Color.RED, p, square.getWidth()));
 				square.repaint();
 			}
 			// right
 			else if (square.getCol() - previous.getCol() == -1) {
-				square.setPiece1(new Line(Color.RED, p, square.getWidth(), square.getHeight()));
+				square.setPiece1(new Line(Color.RED, p, square.getWidth()));
 				square.repaint();
 			}
 			// left
 			else if (square.getCol() - previous.getCol() == 1) {
-				square.setPiece1(new Line(Color.RED, p, square.getWidth(), square.getHeight()));
+				square.setPiece1(new Line(Color.RED, p, square.getWidth()));
 				square.repaint();
 			}
 		}

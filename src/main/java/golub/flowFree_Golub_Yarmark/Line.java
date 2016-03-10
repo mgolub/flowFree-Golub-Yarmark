@@ -1,52 +1,67 @@
 package golub.flowFree_Golub_Yarmark;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class Line extends Piece {
 	private static final long serialVersionUID = 1L;
 
-	private int lineWidth;
-	private int lineHeight;
 	private int startX;
 	private int startY;
+	private int endX;
+	private int endY;
 
-	public Line(Color color, Point p, int parentWidth, int parentHeight) {
+	public Line(Color color, Point p, int squareSize) {
 		super(color);
-		this.lineWidth = parentWidth / 3;
-		this.lineHeight = parentHeight / 3;
-		setSize(lineWidth, lineHeight);
 
 		int x = p.getX();
 		int y = p.getY();
-		// left
-		if (x == 0) {
-			startX = 0;
-			startY = lineHeight;
-		}
+
 		// right
-		if (x == parentWidth) {
-			startX = lineWidth;
-			startY = lineHeight;
+		if (x == 0) {
+			System.out.println("right");
+			startX = 0;
+			startY = squareSize / 2;
+			endX = squareSize / 2;
+			endY = squareSize / 2;
 		}
+
+		// left
+		if (x == squareSize) {
+			startX = squareSize / 2;
+			startY = squareSize / 2;
+			endX = squareSize;
+			endY = squareSize / 2;
+		}
+
 		// up
-		if (y == 0) {
-			startX = lineWidth;
-			startY = 0;
+		if (y == squareSize) {
+			startX = squareSize / 2;
+			startY = squareSize / 2;
+			endX = squareSize / 2;
+			endY = squareSize;
 		}
+
 		// down
-		if (y == parentHeight) {
-			startX = lineWidth;
-			startY = lineHeight;
+		if (y == 0) {
+			System.out.println("this should be down");
+			startX = squareSize / 2;
+			startY = squareSize / 2;
+			endX = squareSize / 2;
+			endY = squareSize;
 		}
-		this.startX = p.getX();
-		this.startY = p.getY();
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		g.setColor(this.color);
-		 g.fillRect(startX, startY, lineWidth, lineHeight);
+		// Graphics2D g2 = (Graphics2D) g;
+		// super.paintComponent(g2);
+		// g2.setStroke(new BasicStroke(3));
+		// g2.setColor(this.color);
+		// g2.drawLine(startX, startY, endX, endY);
+		g.drawLine(startX, startY, endX, endY);
+		System.out.println("draw line");
 	}
 }
