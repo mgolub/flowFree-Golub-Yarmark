@@ -3,7 +3,6 @@ package golub.flowFree_Golub_Yarmark;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.util.Stack;
 
 import javax.swing.JComponent;
@@ -40,21 +39,18 @@ public class Square extends JComponent {
 
 	@Override
 	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		g.setColor(this.color);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.WHITE);
 		g.drawRect(0, 0, getWidth(), getHeight());
 		if (piece1 != null) {
 			if (piece1.getClass().equals(Dot.class)) {
-				this.add(piece1);
+				this.add(piece1, BorderLayout.CENTER);
 			} else if (piece1.getClass().equals(Line.class)) {
-				this.add(piece1, piece1.getDirection());
-	}
+				this.add(piece1, BorderLayout.NORTH);
+			}
 		}
-		if (piece2 != null) {
-			this.add(piece2);
-		}
-		super.paintComponent(g);
 	}
 
 	public void addExitLine(Point exit) {
@@ -74,5 +70,9 @@ public class Square extends JComponent {
 
 	public int getCol() {
 		return col;
+	}
+
+	public void clearPathStack() {
+		this.wholeBoard.clearPathStack();
 	}
 }

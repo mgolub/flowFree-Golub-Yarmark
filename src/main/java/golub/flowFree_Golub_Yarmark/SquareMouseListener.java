@@ -1,8 +1,6 @@
 package golub.flowFree_Golub_Yarmark;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -18,6 +16,7 @@ public class SquareMouseListener implements MouseListener {
 	}
 
 	public void mouseEntered(MouseEvent event) {
+		Point p = new Point(event.getX(), event.getY());
 		// this method is called when the mouse moves into a Square
 		// even without clicking
 		if (!square.getPath().isEmpty()) {
@@ -25,25 +24,29 @@ public class SquareMouseListener implements MouseListener {
 			// up
 			if (square.getRow() - previous.getRow() == -1) {
 				// WILL NEED TO GET THE COLOR FORM THE PREVIOUS PIECE
-				square.setPiece1(new Line(Color.RED, BorderLayout.NORTH));
+				square.setPiece1(new Line(Color.RED, p, square.getWidth(), square.getHeight()));
 				square.repaint();
-				System.out.println("got there!");
 			}
 			// down
 			else if (square.getRow() - previous.getRow() == 1) {
+				square.setPiece1(new Line(Color.RED, p, square.getWidth(), square.getHeight()));
+				square.repaint();
 			}
 			// right
 			else if (square.getCol() - previous.getCol() == -1) {
+				square.setPiece1(new Line(Color.RED, p, square.getWidth(), square.getHeight()));
+				square.repaint();
 			}
 			// left
 			else if (square.getCol() - previous.getCol() == 1) {
+				square.setPiece1(new Line(Color.RED, p, square.getWidth(), square.getHeight()));
+				square.repaint();
 			}
-			square.repaint();
 		}
 	}
 
 	public void mouseExited(MouseEvent event) {
-		Point exit = event.getPoint();
+		Point exit = new Point(event.getX(), event.getY());
 		square.addExitLine(exit);
 
 	}
@@ -54,7 +57,7 @@ public class SquareMouseListener implements MouseListener {
 	}
 
 	public void mouseReleased(MouseEvent arg0) {
-
+		square.clearPathStack();
 	}
 
 }

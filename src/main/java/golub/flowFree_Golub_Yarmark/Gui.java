@@ -77,7 +77,7 @@ public class Gui extends JFrame {
 				squareGrid[i][j] = new Square(this, i, j);
 				squareGrid[i][j].addMouseListener(new SquareMouseListener(squareGrid[i][j]));
 				if (level[i][j] != null) {
-					Piece dot = (new Dot(level1.getColor(i, j), BorderLayout.CENTER));
+					Piece dot = (new Dot(level1.getColor(i, j)));
 					squareGrid[i][j].setPiece1(dot);
 
 				}
@@ -127,6 +127,10 @@ public class Gui extends JFrame {
 		boardGrid.setBorder(new LineBorder(Color.WHITE, 30));
 		southTopPanel = new JPanel(new BorderLayout());
 		southTopPanel.setBackground(Color.WHITE);
+	}
+
+	public void clearPathStack() {
+		this.squaresPath = new Stack<Square>();
 	}
 
 }

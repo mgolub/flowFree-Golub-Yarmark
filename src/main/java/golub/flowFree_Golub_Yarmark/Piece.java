@@ -11,13 +11,11 @@ public class Piece extends JComponent {
 	Color color;
 	private int centerX;
 	private int centerY;
-	private String direction;
 
-	public Piece(Color color, String direction) {
+	public Piece(Color color) {
 		this.color = color;
 		centerX = this.getWidth() / 2;
 		centerY = this.getHeight() / 2;
-		this.direction = direction;
 	}
 
 	public Color getColor() {
@@ -34,9 +32,5 @@ public class Piece extends JComponent {
 
 	public int getCenterY() {
 		return centerY;
-	}
-
-	public String getDirection() {
-		return direction;
 	}
 }
