@@ -30,13 +30,17 @@ public class Square extends JComponent {
 		if (!(this.piece1 instanceof Dot)) {
 			this.piece1 = piece1;
 		}
+		if (this.piece1 instanceof Dot){
+			this.piece2 = piece1;
+		}
 	}
 
 	public void setPiece2(Piece piece2) {
-		if ((this.piece1.getColor().equals(piece2.getColor()))
-				|| ((this.piece1 instanceof Dot) && this.piece1.getColor().equals(piece2.getColor()))) {
+		//if ((this.piece1.getColor().equals(piece2.getColor()))
+		//		|| ((this.piece1 instanceof Dot) && this.piece1.getColor().equals(piece2.getColor()))) {
 			this.piece2 = piece2;
-		}
+		//}
+	
 	}
 
 	@Override
