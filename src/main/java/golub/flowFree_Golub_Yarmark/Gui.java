@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.util.Stack;
 
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -44,6 +45,7 @@ public class Gui extends JFrame {
 		setTitle("Flow Free");
 		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 
 		setPanels();
 		setLabelButtons();
@@ -121,7 +123,9 @@ public class Gui extends JFrame {
 		movesNum = new JLabel("Moves: " + movesCount + "          " );
 		movesNum.setFont(new Font(title.getFont().getName(), title.getFont().getStyle(), 16));
 		southTopPanel.add(movesNum, BorderLayout.EAST);
-		southTopPanel.add(Box.createRigidArea(new Dimension(10, 10)), BorderLayout.SOUTH);
+		JPanel south = new JPanel();south.setBackground(Color.BLACK);
+		south.setPreferredSize(new Dimension(3,3));
+		southTopPanel.add(south, BorderLayout.SOUTH);
 		topPanel.add(southTopPanel, BorderLayout.SOUTH);
 	}
 

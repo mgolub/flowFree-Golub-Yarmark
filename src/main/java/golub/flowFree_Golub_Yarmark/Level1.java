@@ -28,7 +28,7 @@ public class Level1 {
 	private void fillcolorArray() {
 		colors[0] = Color.GREEN;
 		colors[1] = Color.YELLOW;
-		colors[1] = Color.MAGENTA;
+		colors[2] = Color.MAGENTA;
 		colors[3] = Color.RED;
 		colors[4] = Color.BLUE;
 		colors[5] = Color.CYAN;
