@@ -53,25 +53,48 @@ public class SquareMouseListener implements MouseListener {
 				square.setPiece1(new Line(Color.red, startX, startY, endX, endY));
 				square.repaint();
 			}
-			/*
-			 * Square previous = square.getPath().peek(); // up if
-			 * (square.getRow() - previous.getRow() == -1) { // WILL NEED TO GET
-			 * THE COLOR FORM THE PREVIOUS PIECE square.setPiece1(new
-			 * Line(Color.RED, square.getWidth())); square.repaint(); } // down
-			 * else if (square.getRow() - previous.getRow() == 1) {
-			 * square.setPiece1(new Line(Color.RED, square.getWidth()));
-			 * square.repaint(); } // right else if (square.getCol() -
-			 * previous.getCol() == -1) { square.setPiece1(new Line(Color.RED,
-			 * square.getWidth())); square.repaint(); } // left else if
-			 * (square.getCol() - previous.getCol() == 1) { square.setPiece1(new
-			 * Line(Color.RED, square.getWidth())); square.repaint(); }
-			 */
 		}
 	}
 
 	public void mouseExited(MouseEvent event) {
-		Point exit = new Point(event.getX(), event.getY());
-		square.addExitLine(exit);
+		if (!square.getPath().isEmpty()) {
+			Point exit = new Point(event.getX(), event.getY());
+			int x = event.getX();
+			int y = event.getY();
+			int startX, startY, endX, endY;
+			if (y == -1) { // (entered from top edge)
+				endX = 37;
+				endY = -1;
+				startX = 37;
+				startY = 37;
+				square.setPiece2(new Line(Color.RED, startX, startY, endX, endY));
+				square.repaint();
+			}
+			if (y == 80) {// (entered from bottom edge)
+				endX = 37;
+				endY = 80;
+				startX = 37;
+				startY = 37;
+				square.setPiece2(new Line(Color.red, startX, startY, endX, endY));
+				square.repaint();
+			}
+			if (x == -1) {// (entered from left edge)
+				endX = -1;
+				endY = 37;
+				startX = 37;
+				startY = 37;
+				square.setPiece2(new Line(Color.red, startX, startY, endX, endY));
+				square.repaint();
+			}
+			if (x == 80) {// (entered from right edge)
+				endX = 80;
+				endY = 37;
+				startX = 37;
+				startY = 37;
+				square.setPiece2(new Line(Color.red, startX, startY, endX, endY));
+				square.repaint();
+			}
+		}
 
 	}
 
