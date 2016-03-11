@@ -16,30 +16,56 @@ public class SquareMouseListener implements MouseListener {
 	}
 
 	public void mouseEntered(MouseEvent event) {
-		Point p = new Point(event.getX(), event.getY());
+
 		if (!square.getPath().isEmpty()) {
-			Square previous = square.getPath().peek();
-			// up
-			if (square.getRow() - previous.getRow() == -1) {
-				// WILL NEED TO GET THE COLOR FORM THE PREVIOUS PIECE
-				square.setPiece1(new Line(Color.RED, p, square.getWidth()));
+			int x = event.getX();
+			int y = event.getY();
+			int startX, startY, endX, endY;
+			if (y == 0) { // (entered from top edge)
+				startX = 37;
+				startY = 0;
+				endX = 37;
+				endY = 37;
+				square.setPiece1(new Line(Color.red, startX, startY, endX, endY));
 				square.repaint();
 			}
-			// down
-			else if (square.getRow() - previous.getRow() == 1) {
-				square.setPiece1(new Line(Color.RED, p, square.getWidth()));
+			if (y == 79) {// (entered from bottom edge)
+				startX = 37;
+				startY = 79;
+				endX = 37;
+				endY = 37;
+				square.setPiece1(new Line(Color.red, startX, startY, endX, endY));
 				square.repaint();
 			}
-			// right
-			else if (square.getCol() - previous.getCol() == -1) {
-				square.setPiece1(new Line(Color.RED, p, square.getWidth()));
+			if (x == 0) {// (entered from left edge)
+				startX = 0;
+				startY = 37;
+				endX = 37;
+				endY = 37;
+				square.setPiece1(new Line(Color.red, startX, startY, endX, endY));
 				square.repaint();
 			}
-			// left
-			else if (square.getCol() - previous.getCol() == 1) {
-				square.setPiece1(new Line(Color.RED, p, square.getWidth()));
+			if (x == 79) {// (entered from right edge)
+				startX = 79;
+				startY = 37;
+				endX = 37;
+				endY = 37;
+				square.setPiece1(new Line(Color.red, startX, startY, endX, endY));
 				square.repaint();
 			}
+			/*
+			 * Square previous = square.getPath().peek(); // up if
+			 * (square.getRow() - previous.getRow() == -1) { // WILL NEED TO GET
+			 * THE COLOR FORM THE PREVIOUS PIECE square.setPiece1(new
+			 * Line(Color.RED, square.getWidth())); square.repaint(); } // down
+			 * else if (square.getRow() - previous.getRow() == 1) {
+			 * square.setPiece1(new Line(Color.RED, square.getWidth()));
+			 * square.repaint(); } // right else if (square.getCol() -
+			 * previous.getCol() == -1) { square.setPiece1(new Line(Color.RED,
+			 * square.getWidth())); square.repaint(); } // left else if
+			 * (square.getCol() - previous.getCol() == 1) { square.setPiece1(new
+			 * Line(Color.RED, square.getWidth())); square.repaint(); }
+			 */
 		}
 	}
 

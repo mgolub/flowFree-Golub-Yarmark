@@ -13,45 +13,12 @@ public class Line extends Piece {
 	private int endX;
 	private int endY;
 
-	public Line(Color color, Point p, int squareSize) {
+	public Line(Color color, int startX, int startY, int endX, int endY) {
 		super(color);
-
-		int x = p.getX();
-		int y = p.getY();
-
-		// right
-		if (x == 0) {
-			System.out.println("right");
-			startX = 0;
-			startY = squareSize / 2;
-			endX = squareSize / 2;
-			endY = squareSize / 2;
-		}
-
-		// left
-		if (x == squareSize) {
-			startX = squareSize / 2;
-			startY = squareSize / 2;
-			endX = squareSize;
-			endY = squareSize / 2;
-		}
-
-		// up
-		if (y == squareSize) {
-			startX = squareSize / 2;
-			startY = squareSize / 2;
-			endX = squareSize / 2;
-			endY = squareSize;
-		}
-
-		// down
-		if (y == 0) {
-			System.out.println("this should be down");
-			startX = squareSize / 2;
-			startY = squareSize / 2;
-			endX = squareSize / 2;
-			endY = squareSize;
-		}
+		this.startX = startX;
+		this.startY = startY;
+		this.endX = endX;
+		this.endY = endY;
 	}
 
 	@Override
