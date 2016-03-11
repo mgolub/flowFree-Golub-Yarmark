@@ -4,12 +4,16 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JLabel;
+
 public class SquareMouseListener implements MouseListener {
 
 	private Square square;
+	private Gui gui;
 
-	public SquareMouseListener(Square component) {
+	public SquareMouseListener(Square component, Gui gui) {
 		square = component;
+		this.gui = gui;
 	}
 
 	public void mouseClicked(MouseEvent event) {
@@ -109,6 +113,8 @@ public class SquareMouseListener implements MouseListener {
 
 	public void mouseReleased(MouseEvent arg0) {
 		square.clearPathStack();
+		gui.addMoveNum();
+		
 	}
 
 }

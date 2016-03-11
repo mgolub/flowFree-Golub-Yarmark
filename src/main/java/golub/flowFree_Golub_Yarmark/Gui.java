@@ -28,6 +28,7 @@ public class Gui extends JFrame {
 	private JLabel title;
 	private JLabel levelNum;
 	private JLabel movesNum;
+	private int movesCount;
 
 	private JButton restart;
 
@@ -75,7 +76,7 @@ public class Gui extends JFrame {
 			for (int j = 0; j < 6; j++) {
 				JPanel squarePanel = new JPanel(new BorderLayout());
 				squareGrid[i][j] = new Square(this, i, j);
-				squareGrid[i][j].addMouseListener(new SquareMouseListener(squareGrid[i][j]));
+				squareGrid[i][j].addMouseListener(new SquareMouseListener(squareGrid[i][j], this));
 				if (level[i][j] != null) {
 					Piece dot = (new Dot(level1.getColor(i, j)));
 					squareGrid[i][j].setPiece1(dot);
@@ -114,7 +115,8 @@ public class Gui extends JFrame {
 
 		levelNum = new JLabel("          Level 1");
 		southTopPanel.add(levelNum, BorderLayout.WEST);
-		movesNum = new JLabel("Moves: 0          ");
+		movesCount = 0;
+		movesNum = new JLabel("Moves: " + movesCount + "          " );
 		southTopPanel.add(movesNum, BorderLayout.EAST);
 		topPanel.add(southTopPanel, BorderLayout.SOUTH);
 	}
@@ -131,6 +133,11 @@ public class Gui extends JFrame {
 
 	public void clearPathStack() {
 		this.squaresPath = new Stack<Square>();
+	}
+	
+	public void addMoveNum(){
+		movesCount++;
+		movesNum.setText("Moves: " + movesCount + "         ");
 	}
 
 }
