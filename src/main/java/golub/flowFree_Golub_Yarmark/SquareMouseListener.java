@@ -100,7 +100,6 @@ public class SquareMouseListener implements MouseListener {
 	}
 
 	public void mousePressed(MouseEvent event) {
-		System.out.println("mouse pressed");
 		square.pushPath();
 		square.setLineColor(square.getPath().peek().getLineColor());
 
