@@ -22,13 +22,10 @@ public class Line extends Piece {
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
-		// Graphics2D g2 = (Graphics2D) g;
-		// super.paintComponent(g2);
-		// g2.setStroke(new BasicStroke(3));
-		// g2.setColor(this.color);
-		// g2.drawLine(startX, startY, endX, endY);
+	public void draw(Graphics g, int width, int height) {
+		g.setColor(getColor());
 		g.drawLine(startX, startY, endX, endY);
 		System.out.println("draw line");
+
 	}
 }

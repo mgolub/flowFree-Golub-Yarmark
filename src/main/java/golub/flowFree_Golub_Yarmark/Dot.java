@@ -12,9 +12,9 @@ public class Dot extends Piece {
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		g.setColor(this.color);
-		g.fillOval(20, 20, getWidth() - (getWidth() / 2), getHeight() - (getHeight() / 2));
+	public void draw(Graphics g, int width, int height) {
+		g.setColor(getColor());
+		g.fillOval(20, 20, width - (width / 2),height - (height / 2));
+		
 	}
 }

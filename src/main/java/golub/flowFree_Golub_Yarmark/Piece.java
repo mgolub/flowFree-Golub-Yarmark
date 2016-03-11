@@ -1,10 +1,11 @@
 package golub.flowFree_Golub_Yarmark;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
 import javax.swing.JComponent;
 
-public class Piece extends JComponent {
+public abstract class Piece {
 
 	private static final long serialVersionUID = 1L;
 
@@ -14,8 +15,6 @@ public class Piece extends JComponent {
 
 	public Piece(Color color) {
 		this.color = color;
-		centerX = this.getWidth() / 2;
-		centerY = this.getHeight() / 2;
 	}
 
 	public Color getColor() {
@@ -33,4 +32,7 @@ public class Piece extends JComponent {
 	public int getCenterY() {
 		return centerY;
 	}
+	
+	public abstract void draw(Graphics g, int width, int height);
+	
 }
