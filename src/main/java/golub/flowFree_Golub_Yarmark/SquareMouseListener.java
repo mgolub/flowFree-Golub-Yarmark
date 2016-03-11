@@ -101,8 +101,10 @@ public class SquareMouseListener implements MouseListener {
 
 	public void mousePressed(MouseEvent event) {
 		square.pushPath();
-		square.setLineColor(square.getPath().peek().getLineColor());
-
+		Square s = square.getPath().peek();
+		// only need a getPiece1 method because piece2's color will always be
+		// based on piece1
+		s.setLineColor(s.getPiece1().getColor());
 	}
 
 	public void mouseReleased(MouseEvent arg0) {

@@ -30,17 +30,18 @@ public class Square extends JComponent {
 		if (!(this.piece1 instanceof Dot)) {
 			this.piece1 = piece1;
 		}
-		if (this.piece1 instanceof Dot){
+		if (this.piece1 instanceof Dot) {
 			this.piece2 = piece1;
 		}
 	}
 
 	public void setPiece2(Piece piece2) {
-		//if ((this.piece1.getColor().equals(piece2.getColor()))
-		//		|| ((this.piece1 instanceof Dot) && this.piece1.getColor().equals(piece2.getColor()))) {
-			this.piece2 = piece2;
-		//}
-	
+		// if ((this.piece1.getColor().equals(piece2.getColor()))
+		// || ((this.piece1 instanceof Dot) &&
+		// this.piece1.getColor().equals(piece2.getColor()))) {
+		this.piece2 = piece2;
+		// }
+
 	}
 
 	@Override
@@ -87,5 +88,11 @@ public class Square extends JComponent {
 
 	public Color getLineColor() {
 		return lineColor;
+	}
+
+	public Piece getPiece1() {
+		// only need a getPiece1 method because piece2's color will always be
+		// based on piece1
+		return piece1;
 	}
 }
