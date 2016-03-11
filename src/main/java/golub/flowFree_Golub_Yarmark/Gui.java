@@ -10,6 +10,7 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.util.Stack;
 
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -114,10 +115,13 @@ public class Gui extends JFrame {
 		topPanel.add(title, BorderLayout.CENTER);
 
 		levelNum = new JLabel("          Level 1");
+		levelNum.setFont(new Font(title.getFont().getName(), title.getFont().getStyle(), 16));
 		southTopPanel.add(levelNum, BorderLayout.WEST);
 		movesCount = 0;
 		movesNum = new JLabel("Moves: " + movesCount + "          " );
+		movesNum.setFont(new Font(title.getFont().getName(), title.getFont().getStyle(), 16));
 		southTopPanel.add(movesNum, BorderLayout.EAST);
+		southTopPanel.add(Box.createRigidArea(new Dimension(10, 10)), BorderLayout.SOUTH);
 		topPanel.add(southTopPanel, BorderLayout.SOUTH);
 	}
 
