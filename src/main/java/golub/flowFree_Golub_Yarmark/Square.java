@@ -26,16 +26,14 @@ public class Square extends JComponent {
 	}
 
 	public void setPiece1(Piece piece1) {
-		if (piece1 != this.piece2) {
+		if (piece1 != this.piece2/* && this.piece2 != "dot" */) {
 			this.piece1 = piece1;
-			repaint();
 		}
 	}
 
 	public void setPiece2(Piece piece2) {
-		if (piece2 != this.piece1 /* && this.piece2 != "dot" */) {
+		if (piece2 != this.piece1 ) {
 			this.piece1 = piece2;
-			repaint();
 		}
 	}
 
@@ -47,19 +45,9 @@ public class Square extends JComponent {
 		g.setColor(Color.WHITE);
 		g.drawRect(0, 0, getWidth(), getHeight());
 		if (piece1 != null) {
-			
 			piece1.draw(g, getWidth(), getHeight());
-			
-//			if (piece1.getClass().equals(Dot.class)) {
-//				Dot dot = (Dot) piece1;
-//				dot(g);
-//			} else if (piece1.getClass().equals(Line.class)) {
-//				this.add(piece1);
-//				this.add(piece1, BorderLayout.NORTH);
-//				System.out.println("draw square");
-//			}
 		}
-		if ( piece2 != null ) {
+		if (piece2 != null) {
 			piece2.draw(g, getWidth(), getHeight());
 		}
 	}
