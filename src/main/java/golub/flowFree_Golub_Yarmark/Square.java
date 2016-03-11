@@ -17,6 +17,7 @@ public class Square extends JComponent {
 	private Gui wholeBoard;
 	private int row;
 	private int col;
+	private Color lineColor;
 
 	public Square(Gui gui, int row, int col) {
 		setLayout(new BorderLayout());
@@ -32,7 +33,7 @@ public class Square extends JComponent {
 	}
 
 	public void setPiece2(Piece piece2) {
-		if (piece2 != this.piece1 ) {
+		if (piece2 != this.piece1) {
 			this.piece1 = piece2;
 		}
 	}
@@ -73,5 +74,13 @@ public class Square extends JComponent {
 
 	public void clearPathStack() {
 		this.wholeBoard.clearPathStack();
+	}
+
+	public void setLineColor(Color lineColor) {
+		this.lineColor = lineColor;
+	}
+
+	public Color getLineColor() {
+		return lineColor;
 	}
 }

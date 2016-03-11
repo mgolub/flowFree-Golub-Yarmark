@@ -16,8 +16,8 @@ public class SquareMouseListener implements MouseListener {
 	}
 
 	public void mouseEntered(MouseEvent event) {
-
 		if (!square.getPath().isEmpty()) {
+			Color lineColor = square.getPath().peek().getLineColor();
 			int x = event.getX();
 			int y = event.getY();
 			int startX, startY, endX, endY;
@@ -26,7 +26,7 @@ public class SquareMouseListener implements MouseListener {
 				startY = 0;
 				endX = 37;
 				endY = 37;
-				square.setPiece1(new Line(Color.red, startX, startY, endX, endY));
+				square.setPiece1(new Line(lineColor, startX, startY, endX, endY));
 				square.repaint();
 			}
 			if (y == 79) {// (entered from bottom edge)
@@ -34,7 +34,7 @@ public class SquareMouseListener implements MouseListener {
 				startY = 79;
 				endX = 37;
 				endY = 37;
-				square.setPiece1(new Line(Color.red, startX, startY, endX, endY));
+				square.setPiece1(new Line(lineColor, startX, startY, endX, endY));
 				square.repaint();
 			}
 			if (x == 0) {// (entered from left edge)
@@ -42,7 +42,7 @@ public class SquareMouseListener implements MouseListener {
 				startY = 37;
 				endX = 37;
 				endY = 37;
-				square.setPiece1(new Line(Color.red, startX, startY, endX, endY));
+				square.setPiece1(new Line(lineColor, startX, startY, endX, endY));
 				square.repaint();
 			}
 			if (x == 79) {// (entered from right edge)
@@ -50,7 +50,7 @@ public class SquareMouseListener implements MouseListener {
 				startY = 37;
 				endX = 37;
 				endY = 37;
-				square.setPiece1(new Line(Color.red, startX, startY, endX, endY));
+				square.setPiece1(new Line(lineColor, startX, startY, endX, endY));
 				square.repaint();
 			}
 		}
@@ -58,6 +58,7 @@ public class SquareMouseListener implements MouseListener {
 
 	public void mouseExited(MouseEvent event) {
 		if (!square.getPath().isEmpty()) {
+			Color lineColor = square.getPath().peek().getLineColor();
 			Point exit = new Point(event.getX(), event.getY());
 			int x = event.getX();
 			int y = event.getY();
@@ -67,7 +68,7 @@ public class SquareMouseListener implements MouseListener {
 				endY = -1;
 				startX = 37;
 				startY = 37;
-				square.setPiece2(new Line(square.getColor(), startX, startY, endX, endY));
+				square.setPiece2(new Line(lineColor, startX, startY, endX, endY));
 				square.repaint();
 			}
 			if (y == 80) {// (entered from bottom edge)
@@ -75,7 +76,7 @@ public class SquareMouseListener implements MouseListener {
 				endY = 80;
 				startX = 37;
 				startY = 37;
-				square.setPiece2(new Line(square.getColor(), startX, startY, endX, endY));
+				square.setPiece2(new Line(lineColor, startX, startY, endX, endY));
 				square.repaint();
 			}
 			if (x == -1) {// (entered from left edge)
@@ -83,7 +84,7 @@ public class SquareMouseListener implements MouseListener {
 				endY = 37;
 				startX = 37;
 				startY = 37;
-				square.setPiece2(new Line(square.getColor(), startX, startY, endX, endY));
+				square.setPiece2(new Line(lineColor, startX, startY, endX, endY));
 				square.repaint();
 			}
 			if (x == 80) {// (entered from right edge)
@@ -91,7 +92,7 @@ public class SquareMouseListener implements MouseListener {
 				endY = 37;
 				startX = 37;
 				startY = 37;
-				square.setPiece2(new Line(square.getColor(), startX, startY, endX, endY));
+				square.setPiece2(new Line(lineColor, startX, startY, endX, endY));
 				square.repaint();
 			}
 		}
@@ -101,6 +102,8 @@ public class SquareMouseListener implements MouseListener {
 	public void mousePressed(MouseEvent event) {
 		System.out.println("mouse pressed");
 		square.pushPath();
+		square.setLineColor(square.getPath().peek().getLineColor());
+
 	}
 
 	public void mouseReleased(MouseEvent arg0) {
