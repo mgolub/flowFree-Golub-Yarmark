@@ -67,7 +67,7 @@ public class SquareMouseListener implements MouseListener {
 				endY = -1;
 				startX = 37;
 				startY = 37;
-				square.setPiece2(new Line(square.getColor(), startX, startY, endX, endY));
+				square.setPiece2(new Line(Color.red, startX, startY, endX, endY));
 				square.repaint();
 			}
 			if (y == 80) {// (entered from bottom edge)
@@ -75,7 +75,7 @@ public class SquareMouseListener implements MouseListener {
 				endY = 80;
 				startX = 37;
 				startY = 37;
-				square.setPiece2(new Line(square.getColor(), startX, startY, endX, endY));
+				square.setPiece2(new Line(Color.red, startX, startY, endX, endY));
 				square.repaint();
 			}
 			if (x == -1) {// (entered from left edge)
@@ -83,7 +83,7 @@ public class SquareMouseListener implements MouseListener {
 				endY = 37;
 				startX = 37;
 				startY = 37;
-				square.setPiece2(new Line(square.getColor(), startX, startY, endX, endY));
+				square.setPiece2(new Line(Color.red, startX, startY, endX, endY));
 				square.repaint();
 			}
 			if (x == 80) {// (entered from right edge)
@@ -91,7 +91,7 @@ public class SquareMouseListener implements MouseListener {
 				endY = 37;
 				startX = 37;
 				startY = 37;
-				square.setPiece2(new Line(square.getColor(), startX, startY, endX, endY));
+				square.setPiece2(new Line(Color.red, startX, startY, endX, endY));
 				square.repaint();
 			}
 		}
