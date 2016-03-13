@@ -5,8 +5,6 @@ import java.awt.Graphics;
 
 public class Dot extends Piece {
 
-	private static final long serialVersionUID = 1L;
-
 	public Dot(Color color) {
 		super(color);
 	}

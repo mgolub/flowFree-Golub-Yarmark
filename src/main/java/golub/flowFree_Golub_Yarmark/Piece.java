@@ -3,11 +3,7 @@ package golub.flowFree_Golub_Yarmark;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import javax.swing.JComponent;
-
 public abstract class Piece {
-
-	private static final long serialVersionUID = 1L;
 
 	Color color;
 	private int centerX;

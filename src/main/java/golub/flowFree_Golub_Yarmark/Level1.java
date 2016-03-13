@@ -52,8 +52,8 @@ public class Level1 {
 		level1[5][2] = colors[4];
 		return level1;
 	}
-	
-	private Color[][] level2(){
+
+	private Color[][] level2() {
 		level2 = new Color[6][6];
 		level2[0][1] = colors[2];
 		level2[0][2] = colors[4];
@@ -70,7 +70,7 @@ public class Level1 {
 		return level2;
 	}
 
-	public ArrayList getBoard() {
+	public ArrayList<Color[][]> getBoard() {
 		return levels;
 	}
 

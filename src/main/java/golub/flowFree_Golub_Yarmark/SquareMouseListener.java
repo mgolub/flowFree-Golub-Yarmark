@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JLabel;
-
 public class SquareMouseListener implements MouseListener {
 
 	private Square square;
@@ -60,7 +58,6 @@ public class SquareMouseListener implements MouseListener {
 	public void mouseExited(MouseEvent event) {
 		if (!square.getPath().isEmpty()) {
 			Color lineColor = square.getPath().peek().getLineColor();
-			Point exit = new Point(event.getX(), event.getY());
 			int x = event.getX();
 			int y = event.getY();
 			int startX, startY, endX, endY;

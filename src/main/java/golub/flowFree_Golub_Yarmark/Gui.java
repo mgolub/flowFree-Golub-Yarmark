@@ -10,8 +10,6 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.util.Stack;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -61,7 +59,6 @@ public class Gui extends JFrame {
 		add(completePanel);
 		// This must be last in Gui constructor
 		getContentPane();
-		setVisible(true);
 		pack();
 	}
 
@@ -73,10 +70,6 @@ public class Gui extends JFrame {
 		BufferedImage circleImg = new BufferedImage(60, 60, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = circleImg.createGraphics();
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		int x = 4;
-		int y = x;
-		// int width = 60 - 2 * x;
-		// int height = 60 - 2 * y;
 
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {

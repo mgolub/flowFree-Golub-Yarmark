@@ -6,8 +6,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 public class Line extends Piece {
-	private static final long serialVersionUID = 1L;
-
 	private int startX;
 	private int startY;
 	private int endX;
