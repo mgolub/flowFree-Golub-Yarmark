@@ -68,7 +68,7 @@ public class Gui extends JFrame {
 	private void setBoardGame() {
 		squareGrid = new Square[6][6];
 		level1 = new Level1();
-		level = level1.getBoard();
+		level = (Color[][]) level1.getBoard().get(0);
 
 		BufferedImage circleImg = new BufferedImage(60, 60, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = circleImg.createGraphics();
@@ -123,21 +123,24 @@ public class Gui extends JFrame {
 		levelNum.setFont(new Font(title.getFont().getName(), title.getFont().getStyle(), 16));
 		southTopPanel.add(levelNum, BorderLayout.WEST);
 		movesCount = 0;
-		movesNum = new JLabel("Moves: " + movesCount + "          " );
+		movesNum = new JLabel("Moves: " + movesCount + "          ");
 		movesNum.setFont(new Font(title.getFont().getName(), title.getFont().getStyle(), 16));
 		southTopPanel.add(movesNum, BorderLayout.EAST);
 		restart = new JButton(new ImageIcon("restart.png"));
 		restart.setBackground(Color.WHITE);
-		prevLevel = new JButton (new ImageIcon ("prev.png"));
+		prevLevel = new JButton(new ImageIcon("prev.png"));
 		prevLevel.setBackground(Color.WHITE);
-		nextLevel = new JButton (new ImageIcon ("next.png"));
+		nextLevel = new JButton(new ImageIcon("next.png"));
 		nextLevel.setBackground(Color.WHITE);
 		JPanel midSouth = new JPanel();
 		midSouth.setBackground(Color.WHITE);
-		midSouth.add(prevLevel);midSouth.add(restart);midSouth.add(nextLevel);
+		midSouth.add(prevLevel);
+		midSouth.add(restart);
+		midSouth.add(nextLevel);
 		southTopPanel.add(midSouth, BorderLayout.CENTER);
-		JPanel south = new JPanel();south.setBackground(Color.BLACK);
-		south.setPreferredSize(new Dimension(2,2));
+		JPanel south = new JPanel();
+		south.setBackground(Color.BLACK);
+		south.setPreferredSize(new Dimension(2, 2));
 		southTopPanel.add(south, BorderLayout.SOUTH);
 		topPanel.add(southTopPanel, BorderLayout.SOUTH);
 	}
@@ -155,8 +158,8 @@ public class Gui extends JFrame {
 	public void clearPathStack() {
 		this.squaresPath = new Stack<Square>();
 	}
-	
-	public void addMoveNum(){
+
+	public void addMoveNum() {
 		movesCount++;
 		movesNum.setText("Moves: " + movesCount + "         ");
 	}

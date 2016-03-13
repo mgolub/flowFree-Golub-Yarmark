@@ -32,24 +32,21 @@ public class SquareMouseListener implements MouseListener {
 				endY = 38;
 				square.setPiece1(new Line(lineColor, startX, startY, endX, endY));
 				square.repaint();
-			}
-			else if (y <= 79 && y > 69) {// (entered from bottom edge)
+			} else if (y <= 79 && y > 69) {// (entered from bottom edge)
 				startX = 38;
 				startY = 79;
 				endX = 38;
 				endY = 38;
 				square.setPiece1(new Line(lineColor, startX, startY, endX, endY));
 				square.repaint();
-			}
-			else if (x >= 0 && x < 10) {// (entered from left edge)
+			} else if (x >= 0 && x < 10) {// (entered from left edge)
 				startX = 0;
 				startY = 38;
 				endX = 38;
 				endY = 38;
 				square.setPiece1(new Line(lineColor, startX, startY, endX, endY));
 				square.repaint();
-			}
-			else if (x <= 79 && x > 69) {// (entered from right edge)
+			} else if (x <= 79 && x > 69) {// (entered from right edge)
 				startX = 79;
 				startY = 38;
 				endX = 38;
@@ -104,20 +101,20 @@ public class SquareMouseListener implements MouseListener {
 	}
 
 	public void mousePressed(MouseEvent event) {
-		if (square.getPiece1() != null){
-		square.pushPath();
-		Square s = square.getPath().peek();
-		// only need a getPiece1 method because piece2's color will always be
-		// based on piece1
-		s.setLineColor(s.getPiece1().getColor());
-		gui.addMoveNum();
+		if (square.getPiece1() != null) {
+			square.pushPath();
+			Square s = square.getPath().peek();
+			// only need a getPiece1 method because piece2's color will always
+			// be
+			// based on piece1
+			s.setLineColor(s.getPiece1().getColor());
+			gui.addMoveNum();
 		}
 	}
 
 	public void mouseReleased(MouseEvent arg0) {
 		square.clearPathStack();
-		
-		
+
 	}
 
 }

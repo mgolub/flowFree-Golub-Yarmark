@@ -32,7 +32,7 @@ public abstract class Piece {
 	public int getCenterY() {
 		return centerY;
 	}
-	
+
 	public abstract void draw(Graphics g, int width, int height);
-	
+
 }
