@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.Stack;
 
@@ -51,6 +53,7 @@ public class Gui extends JFrame {
 		setPanels();
 		setLabelButtons();
 		setBoardGame();
+		setRestartButton();
 
 		squaresPath = new Stack<Square>();
 
@@ -60,6 +63,29 @@ public class Gui extends JFrame {
 		// This must be last in Gui constructor
 		getContentPane();
 		pack();
+	}
+
+	private void setRestartButton() {
+		restart.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent arg0) {
+				level = (Color[][]) level1.getBoard().get(0);
+				for (int i = 0; i < 6; i++) {
+					for (int j = 0; j < 6; j++) {
+						squareGrid[i][j].setPiece1(null);
+						squareGrid[i][j].setPiece2(null);
+						if (level[i][j] != null) {
+							Piece dot = (new Dot(level1.getColor(i, j)));
+							squareGrid[i][j].setPiece1(dot);
+						}
+						squareGrid[i][j].repaint();
+					}
+				}
+				
+			}
+			
+		});
+		
 	}
 
 	private void setBoardGame() {
