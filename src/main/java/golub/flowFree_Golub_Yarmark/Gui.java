@@ -75,7 +75,7 @@ public class Gui extends JFrame {
 			for (int j = 0; j < 6; j++) {
 				JPanel squarePanel = new JPanel(new BorderLayout());
 				squareGrid[i][j] = new Square(this, i, j);
-				squareGrid[i][j].addMouseListener(new SquareMouseListener(squareGrid[i][j], this));
+				squareGrid[i][j].addMouseListener(new SquareMouseListener2(squareGrid[i][j], this));
 				if (level[i][j] != null) {
 					Piece dot = (new Dot(level1.getColor(i, j)));
 					squareGrid[i][j].setPiece1(dot);
