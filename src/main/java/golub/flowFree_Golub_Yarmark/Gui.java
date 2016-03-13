@@ -12,6 +12,7 @@ import java.util.Stack;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,6 +34,8 @@ public class Gui extends JFrame {
 	private int movesCount;
 
 	private JButton restart;
+	private JButton prevLevel;
+	private JButton nextLevel;
 
 	private Square[][] squareGrid;
 	private Level1 level1;
@@ -112,7 +115,7 @@ public class Gui extends JFrame {
 
 	private void setLabelButtons() {
 		title = new JLabel("Flow Free");
-		title.setFont(new Font(title.getFont().getName(), title.getFont().getStyle(), 48));
+		title.setFont(new Font(title.getFont().getName(), title.getFont().getStyle(), 60));
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		topPanel.add(title, BorderLayout.CENTER);
 
@@ -123,8 +126,18 @@ public class Gui extends JFrame {
 		movesNum = new JLabel("Moves: " + movesCount + "          " );
 		movesNum.setFont(new Font(title.getFont().getName(), title.getFont().getStyle(), 16));
 		southTopPanel.add(movesNum, BorderLayout.EAST);
+		restart = new JButton(new ImageIcon("restart.png"));
+		restart.setBackground(Color.WHITE);
+		prevLevel = new JButton (new ImageIcon ("prev.png"));
+		prevLevel.setBackground(Color.WHITE);
+		nextLevel = new JButton (new ImageIcon ("next.png"));
+		nextLevel.setBackground(Color.WHITE);
+		JPanel midSouth = new JPanel();
+		midSouth.setBackground(Color.WHITE);
+		midSouth.add(prevLevel);midSouth.add(restart);midSouth.add(nextLevel);
+		southTopPanel.add(midSouth, BorderLayout.CENTER);
 		JPanel south = new JPanel();south.setBackground(Color.BLACK);
-		south.setPreferredSize(new Dimension(3,3));
+		south.setPreferredSize(new Dimension(2,2));
 		southTopPanel.add(south, BorderLayout.SOUTH);
 		topPanel.add(southTopPanel, BorderLayout.SOUTH);
 	}

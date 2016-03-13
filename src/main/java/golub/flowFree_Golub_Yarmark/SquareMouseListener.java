@@ -25,7 +25,7 @@ public class SquareMouseListener implements MouseListener {
 			int x = event.getX();
 			int y = event.getY();
 			int startX, startY, endX, endY;
-			if (y == 0) { // (entered from top edge)
+			if (y >= 0 && y < 10) { // (entered from top edge)
 				startX = 38;
 				startY = 0;
 				endX = 38;
@@ -33,7 +33,7 @@ public class SquareMouseListener implements MouseListener {
 				square.setPiece1(new Line(lineColor, startX, startY, endX, endY));
 				square.repaint();
 			}
-			if (y == 79) {// (entered from bottom edge)
+			else if (y <= 79 && y > 69) {// (entered from bottom edge)
 				startX = 38;
 				startY = 79;
 				endX = 38;
@@ -41,7 +41,7 @@ public class SquareMouseListener implements MouseListener {
 				square.setPiece1(new Line(lineColor, startX, startY, endX, endY));
 				square.repaint();
 			}
-			if (x == 0) {// (entered from left edge)
+			else if (x >= 0 && x < 10) {// (entered from left edge)
 				startX = 0;
 				startY = 38;
 				endX = 38;
@@ -49,7 +49,7 @@ public class SquareMouseListener implements MouseListener {
 				square.setPiece1(new Line(lineColor, startX, startY, endX, endY));
 				square.repaint();
 			}
-			if (x == 79) {// (entered from right edge)
+			else if (x <= 79 && x > 69) {// (entered from right edge)
 				startX = 79;
 				startY = 38;
 				endX = 38;
@@ -67,7 +67,7 @@ public class SquareMouseListener implements MouseListener {
 			int x = event.getX();
 			int y = event.getY();
 			int startX, startY, endX, endY;
-			if (y == -1) { // (entered from top edge)
+			if (y >= -1 && y < 9) { // (entered from top edge)
 				endX = 38;
 				endY = -1;
 				startX = 38;
@@ -75,7 +75,7 @@ public class SquareMouseListener implements MouseListener {
 				square.setPiece2(new Line(lineColor, startX, startY, endX, endY));
 				square.repaint();
 			}
-			if (y == 80) {// (entered from bottom edge)
+			if (y <= 80 && y > 70) {// (entered from bottom edge)
 				endX = 38;
 				endY = 80;
 				startX = 38;
@@ -83,7 +83,7 @@ public class SquareMouseListener implements MouseListener {
 				square.setPiece2(new Line(lineColor, startX, startY, endX, endY));
 				square.repaint();
 			}
-			if (x == -1) {// (entered from left edge)
+			if (x >= -1 && x < 9) {// (entered from left edge)
 				endX = -1;
 				endY = 38;
 				startX = 38;
@@ -91,7 +91,7 @@ public class SquareMouseListener implements MouseListener {
 				square.setPiece2(new Line(lineColor, startX, startY, endX, endY));
 				square.repaint();
 			}
-			if (x == 80) {// (entered from right edge)
+			if (x <= 80 && x > 70) {// (entered from right edge)
 				endX = 80;
 				endY = 38;
 				startX = 38;
