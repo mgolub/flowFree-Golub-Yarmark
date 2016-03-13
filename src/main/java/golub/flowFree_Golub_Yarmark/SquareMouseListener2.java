@@ -29,7 +29,7 @@ public class SquareMouseListener2 implements MouseListener {
 					square.setLineColor(lineColor);
 					square.getPath().push(this.square);
 					startX = 38;
-					startY = 0;
+					startY = 79;
 					endX = 38;
 					endY = 38;
 					square.setPiece1(new Line(lineColor, startX, startY, endX, endY));
@@ -42,7 +42,7 @@ public class SquareMouseListener2 implements MouseListener {
 					square.setLineColor(lineColor);
 					square.getPath().push(this.square);
 					startX = 38;
-					startY = 79;
+					startY = 0;
 					endX = 38;
 					endY = 38;
 					square.setPiece1(new Line(lineColor, startX, startY, endX, endY));
@@ -58,6 +58,7 @@ public class SquareMouseListener2 implements MouseListener {
 					startY = 38;
 					endX = 38;
 					endY = 38;
+					square.setPiece1(new Line(lineColor, startX, startY, endX, endY));
 					square.repaint();
 				}
 			}
