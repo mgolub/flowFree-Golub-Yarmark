@@ -154,7 +154,9 @@ public class SquareMouseListener2 implements MouseListener {
 
 	private void drawLine(Color lineColor, Square currentSquare, int startX, int startY, int endX, int endY) {
 		currentSquare.setLineColor(lineColor);
-		square.getPath().push(this.square);
+		if (square.getPath().peek() != square) {
+			square.getPath().push(this.square);
+		}
 		if (currentSquare.getPiece1() == null) {
 			currentSquare.setPiece1(new Line(lineColor, startX, startY, endX, endY));
 		} else {
