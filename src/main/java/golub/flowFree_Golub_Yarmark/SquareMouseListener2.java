@@ -18,14 +18,16 @@ public class SquareMouseListener2 implements MouseListener {
 	}
 
 	public void mouseEntered(MouseEvent event) {
+
 		if (!square.getPath().isEmpty()) {
 			Square previous = square.getPath().peek();
-			Color lineColor = square.getPath().peek().getLineColor();
+			Color lineColor = previous.getLineColor();
 			int startX, startY, endX, endY;
+
 			// (entered from top edge)
-			if (square.getRow() - previous.getRow() == -1) {
+			if (square.getRow() - previous.getRow() == -1 && square.getCol() == previous.getCol()) {
 				// if current square does not have any pieces
-				if (square.getPiece1() == null) {
+				if (square.getPiece1() == null || square.getPiece1().getClass() == Dot.class) {
 					square.setLineColor(lineColor);
 					square.getPath().push(this.square);
 					startX = 38;
@@ -37,7 +39,7 @@ public class SquareMouseListener2 implements MouseListener {
 				}
 			}
 			// (entered from bottom edge)
-			else if (square.getRow() - previous.getRow() == 1) {
+			else if (square.getRow() - previous.getRow() == 1 && square.getCol() == previous.getCol()) {
 				if (square.getPiece1() == null) {
 					square.setLineColor(lineColor);
 					square.getPath().push(this.square);
@@ -50,7 +52,7 @@ public class SquareMouseListener2 implements MouseListener {
 				}
 			}
 			// (entered from left edge)
-			else if (square.getCol() - previous.getCol() == -1) {
+			else if (square.getCol() - previous.getCol() == -1 && square.getRow() == previous.getRow()) {
 				if (square.getPiece1() == null) {
 					square.setLineColor(lineColor);
 					square.getPath().push(this.square);
@@ -63,7 +65,7 @@ public class SquareMouseListener2 implements MouseListener {
 				}
 			}
 			// (entered from right edge)
-			else if (square.getCol() - previous.getCol() == 1) {
+			else if (square.getCol() - previous.getCol() == 1 && square.getRow() == previous.getRow()) {
 				if (square.getPiece1() == null) {
 					square.setLineColor(lineColor);
 					square.getPath().push(this.square);
@@ -79,24 +81,29 @@ public class SquareMouseListener2 implements MouseListener {
 	}
 
 	public void mouseExited(MouseEvent event) {
-		if (!square.getPath().isEmpty()) {
+	/*	if (!square.getPath().isEmpty()) {
 			Square previous = square.getPath().peek();
-			Color lineColor = square.getPath().peek().getLineColor();
+			Color lineColor = previous.getLineColor();
 			int startX, startY, endX, endY;
+
 			// (exited from top edge)
-			if (square.getRow() - previous.getRow() == -1) {
-				if (square.getPiece1() == null) {
+			if (square.getRow() - previous.getRow() == -1 && square.getCol() == previous.getCol()) {
+				if (previous.getPiece1() != null) {
+					square.getPath().push(square);
 					endX = 38;
 					endY = -1;
 					startX = 38;
 					startY = 38;
+					System.out.println("remember to use or delete the next line");
+					previous.setPiece2(new Line(lineColor, 38, 38, 38, 0));
+					previous.repaint();
 					square.setPiece2(new Line(lineColor, startX, startY, endX, endY));
 					square.repaint();
 				}
 			}
 			// (exited from bottom edge)
-			if (square.getRow() - previous.getRow() == 1) {
-				if (square.getPiece1() == null) {
+			if (square.getRow() - previous.getRow() == 1 && square.getCol() == previous.getCol()) {
+				if (previous.getPiece1() != null) {
 					endX = 38;
 					endY = 80;
 					startX = 38;
@@ -104,10 +111,11 @@ public class SquareMouseListener2 implements MouseListener {
 					square.setPiece2(new Line(lineColor, startX, startY, endX, endY));
 					square.repaint();
 				}
+
 			}
 			// (exited from left edge)
-			if (square.getCol() - previous.getCol() == -1) {
-				if (square.getPiece1() == null) {
+			if (square.getCol() - previous.getCol() == -1 && square.getRow() == previous.getRow()) {
+				if (previous.getPiece1() != null) {
 					endX = -1;
 					endY = 38;
 					startX = 38;
@@ -115,10 +123,11 @@ public class SquareMouseListener2 implements MouseListener {
 					square.setPiece2(new Line(lineColor, startX, startY, endX, endY));
 					square.repaint();
 				}
+
 			}
 			// (exited from right edge)
-			if (square.getCol() - previous.getCol() == 1) {
-				if (square.getPiece1() == null) {
+			if (square.getCol() - previous.getCol() == 1 && square.getRow() == previous.getRow()) {
+				if (previous.getPiece1() != null) {
 					endX = 80;
 					endY = 38;
 					startX = 38;
@@ -126,9 +135,10 @@ public class SquareMouseListener2 implements MouseListener {
 					square.setPiece2(new Line(lineColor, startX, startY, endX, endY));
 					square.repaint();
 				}
+
 			}
 		}
-
+*/
 	}
 
 	public void mousePressed(MouseEvent event) {

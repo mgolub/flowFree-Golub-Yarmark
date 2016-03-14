@@ -4,12 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.util.Stack;
 
 import javax.swing.ImageIcon;
@@ -66,7 +63,7 @@ public class Gui extends JFrame {
 	}
 
 	private void setRestartButton() {
-		restart.addActionListener(new ActionListener(){
+		restart.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
 				level = (Color[][]) level1.getBoard().get(0);
@@ -81,21 +78,17 @@ public class Gui extends JFrame {
 						squareGrid[i][j].repaint();
 					}
 				}
-				
+				clearMoves();
 			}
-			
+
 		});
-		
+
 	}
 
 	private void setBoardGame() {
 		squareGrid = new Square[6][6];
 		level1 = new Level1();
 		level = (Color[][]) level1.getBoard().get(0);
-
-		BufferedImage circleImg = new BufferedImage(60, 60, BufferedImage.TYPE_INT_ARGB);
-		Graphics2D g2 = circleImg.createGraphics();
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
@@ -105,7 +98,6 @@ public class Gui extends JFrame {
 				if (level[i][j] != null) {
 					Piece dot = (new Dot(level1.getColor(i, j)));
 					squareGrid[i][j].setPiece1(dot);
-
 				}
 
 				squarePanel.add(squareGrid[i][j], BorderLayout.CENTER);
@@ -168,7 +160,7 @@ public class Gui extends JFrame {
 		completePanel = new JPanel(new BorderLayout());
 		topPanel = new JPanel(new BorderLayout());
 		topPanel.setBackground(Color.WHITE);
-		boardGrid = new JPanel(new GridLayout(6, 6));
+		boardGrid = new JPanel(new GridLayout(6, 6, 2,2));
 		boardGrid.setBorder(new LineBorder(Color.WHITE, 30));
 		southTopPanel = new JPanel(new BorderLayout());
 		southTopPanel.setBackground(Color.WHITE);
@@ -180,7 +172,11 @@ public class Gui extends JFrame {
 
 	public void addMoveNum() {
 		movesCount++;
-		movesNum.setText("Moves: " + movesCount + "         ");
+		movesNum.setText("Moves: " + movesCount + "       ");
 	}
 
+	public void clearMoves() {
+		movesCount = 0;
+		movesNum.setText("Moves: " + movesCount + "       ");
+	}
 }
