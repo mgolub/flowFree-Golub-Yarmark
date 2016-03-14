@@ -32,10 +32,12 @@ public class SquareMouseListener2 implements MouseListener {
 				}
 
 				if (checkCurrentSquare()) {
+					drawLine(lineColor, previous, center, 0, center, center);
 					drawLine(lineColor, square, center, 79, center, center);
 				}
 
 				if (checkCurrentDot(previous)) {
+					drawLine(lineColor, previous, center, 0, center, center);
 					drawLine(lineColor, square, center, 79, center, center);
 				}
 			}
@@ -48,10 +50,12 @@ public class SquareMouseListener2 implements MouseListener {
 				}
 
 				if (checkCurrentSquare()) {
+					drawLine(lineColor, previous, center, center, center, 79);
 					drawLine(lineColor, square, center, 0, center, center);
 				}
 
 				if (checkCurrentDot(previous)) {
+					drawLine(lineColor, previous, center, center, center, 79);
 					drawLine(lineColor, square, center, 0, center, center);
 				}
 			}
@@ -64,10 +68,12 @@ public class SquareMouseListener2 implements MouseListener {
 				}
 
 				if (checkCurrentSquare()) {
+					drawLine(lineColor, previous, 0, center, center, center);
 					drawLine(lineColor, square, 79, center, center, center);
 				}
 
 				if (checkCurrentDot(previous)) {
+					drawLine(lineColor, previous, 0, center, center, center);
 					drawLine(lineColor, square, 79, center, center, center);
 				}
 			}
@@ -79,10 +85,12 @@ public class SquareMouseListener2 implements MouseListener {
 				}
 
 				if (checkCurrentSquare()) {
+					drawLine(lineColor, previous, center, center, 79, center);
 					drawLine(lineColor, square, 0, center, center, center);
 				}
 
 				if (checkCurrentDot(previous)) {
+					drawLine(lineColor, previous, center, center, 79, center);
 					drawLine(lineColor, square, 0, center, center, center);
 				}
 			}
@@ -147,7 +155,11 @@ public class SquareMouseListener2 implements MouseListener {
 	private void drawLine(Color lineColor, Square currentSquare, int startX, int startY, int endX, int endY) {
 		currentSquare.setLineColor(lineColor);
 		square.getPath().push(this.square);
-		currentSquare.setPiece1(new Line(lineColor, startX, startY, endX, endY));
+		if (currentSquare.getPiece1() == null) {
+			currentSquare.setPiece1(new Line(lineColor, startX, startY, endX, endY));
+		} else {
+			currentSquare.setPiece2(new Line(lineColor, startX, startY, endX, endY));
+		}
 		currentSquare.repaint();
 	}
 
