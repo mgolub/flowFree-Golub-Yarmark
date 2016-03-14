@@ -3,7 +3,7 @@ package golub.flowFree_Golub_Yarmark;
 import java.awt.Color;
 import java.util.ArrayList;
 
-public class Level1 {
+public class Levels {
 
 	private ArrayList<Color[][]> levels;
 	private Color[][] level1;
@@ -13,18 +13,38 @@ public class Level1 {
 	private Color[][] level5;
 	private Color[] colors;
 
-	public Level1() {
+	public Levels() {
 		levels = new ArrayList<Color[][]>();
 		colors = new Color[6];
 		fillcolorArray();
 		level1 = level1();
 		level2 = level2();
+		level3 = level3();
+		level4 = level4();
+		level5 = level5();
 
 		levels.add(level1);
 		levels.add(level2);
 		levels.add(level3);
 		levels.add(level4);
 		levels.add(level5);
+	}
+
+	private Color[][] level5() {
+		level5 = new Color[6][6];
+		level5[1][0] = colors[4];
+		level5[1][1] = colors[3];
+		level5[1][2] = colors[1];
+		level5[1][3] = colors[2];
+		level5[2][0] = colors[3];
+		level5[2][3] = colors[0];
+		level5[3][0] = colors[0];
+		level5[3][5] = colors[4];
+		level5[4][1] = colors[1];
+		level5[4][4] = colors[2];
+		level5[4][5] = colors[5];
+		level5[5][3] = colors[5];
+		return level5;
 	}
 
 	private void fillcolorArray() {
@@ -70,11 +90,34 @@ public class Level1 {
 		return level2;
 	}
 
+	private Color[][] level3() {
+		level3 = new Color[6][6];
+		level3[1][1] = colors[1];
+		level3[1][4] = colors[0];
+		level3[2][3] = colors[3];
+		level3[4][2] = colors[1];
+		level3[4][3] = colors[4];
+		level3[4][4] = colors[0];
+		level3[5][2] = colors[4];
+		level3[5][3] = colors[3];
+		return level3;
+	}
+
+	private Color[][] level4() {
+		level4 = new Color[6][6];
+		level4[0][0] = colors[0];
+		level4[2][0] = colors[1];
+		level4[2][3] = colors[3];
+		level4[2][4] = colors[1];
+		level4[3][4] = colors[4];
+		level4[4][1] = colors[4];
+		level4[4][4] = colors[3];
+		level4[5][4] = colors[0];
+		return level4;
+	}
+
 	public ArrayList<Color[][]> getBoard() {
 		return levels;
 	}
 
-	public Color getColor(int i, int j) {
-		return level1[i][j];
-	}
 }

@@ -27,12 +27,14 @@ public class Square extends JComponent {
 	}
 
 	public void setPiece1(Piece piece1) {
-		System.out.println("Change instanceof in Square.setPiece1()");
 		if (!(this.piece1 instanceof Dot)) {
 			this.piece1 = piece1;
 		}
 		if (this.piece1 instanceof Dot) {
 			this.piece2 = piece1;
+		}
+		if (piece1 == null) {
+			this.piece1 = null;
 		}
 	}
 
@@ -50,7 +52,8 @@ public class Square extends JComponent {
 		super.paintComponent(g);
 		g.setColor(this.color);
 		g.fillRect(0, 0, getWidth(), getHeight());
-
+		g.setColor(Color.white);
+		g.drawRect(0, 0, getWidth(), getHeight());
 		if (piece1 != null) {
 			piece1.draw(g, getWidth(), getHeight());
 		}

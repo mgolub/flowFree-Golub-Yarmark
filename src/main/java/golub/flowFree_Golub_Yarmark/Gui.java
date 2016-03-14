@@ -36,7 +36,7 @@ public class Gui extends JFrame {
 	private int levelCount;
 
 	private Square[][] squareGrid;
-	private Level1 levels;
+	private Levels levels;
 	private Color[][] level;
 
 	private Stack<Square> squaresPath; // this will keep track of the squares
@@ -53,6 +53,7 @@ public class Gui extends JFrame {
 		setBoardGame();
 		setRestartButton();
 		setNextButton();
+		setPrevButton();
 
 		squaresPath = new Stack<Square>();
 
@@ -64,45 +65,77 @@ public class Gui extends JFrame {
 		pack();
 	}
 
-	private void setNextButton() {
-		nextLevel.addActionListener(new ActionListener(){
+	private void setPrevButton() {
+		prevLevel.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				levelCount++;
-				levelNum.setText("         Level " + ++levelCount);
-				level = (Color[][]) levels.getBoard().get(levelCount);
+				nextLevel.setEnabled(true);
+				levelCount--;
+				if (levelCount == 1) {
+					prevLevel.setEnabled(false);
+				}
+				levelNum.setText("           Level " + levelCount);
+				level = (Color[][]) levels.getBoard().get(levelCount - 1);
 				for (int i = 0; i < 6; i++) {
 					for (int j = 0; j < 6; j++) {
-						System.out.println("hi");
 						squareGrid[i][j].setPiece1(null);
 						squareGrid[i][j].setPiece2(null);
 						if (level[i][j] != null) {
-							//Piece dot = (new Dot(levels.getColor(i, j)));
-							//squareGrid[i][j].setPiece1(dot);
+							Piece dot = (new Dot(level[i][j]));
+							squareGrid[i][j].setPiece1(dot);
 						}
 						squareGrid[i][j].repaint();
 					}
 				}
 				clearMoves();
-		
-				
+
 			}
-			
+
 		});
-		
+
+	}
+
+	private void setNextButton() {
+		nextLevel.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				prevLevel.setEnabled(true);
+				levelCount++;
+				if (levelCount == 5) {
+					nextLevel.setEnabled(false);
+				}
+				levelNum.setText("           Level " + levelCount);
+				level = (Color[][]) levels.getBoard().get(levelCount - 1);
+				for (int i = 0; i < 6; i++) {
+					for (int j = 0; j < 6; j++) {
+						squareGrid[i][j].setPiece1(null);
+						squareGrid[i][j].setPiece2(null);
+						if (level[i][j] != null) {
+							Piece dot = (new Dot(level[i][j]));
+							squareGrid[i][j].setPiece1(dot);
+						}
+						squareGrid[i][j].repaint();
+					}
+				}
+				clearMoves();
+
+			}
+
+		});
+
 	}
 
 	private void setRestartButton() {
 		restart.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				level = (Color[][]) levels.getBoard().get(--levelCount);
+				level = (Color[][]) levels.getBoard().get(levelCount - 1);
 				for (int i = 0; i < 6; i++) {
 					for (int j = 0; j < 6; j++) {
 						squareGrid[i][j].setPiece1(null);
 						squareGrid[i][j].setPiece2(null);
 						if (level[i][j] != null) {
-							Piece dot = (new Dot(levels.getColor(i, j)));
+							Piece dot = (new Dot(level[i][j]));
 							squareGrid[i][j].setPiece1(dot);
 						}
 						squareGrid[i][j].repaint();
@@ -117,8 +150,8 @@ public class Gui extends JFrame {
 
 	private void setBoardGame() {
 		squareGrid = new Square[6][6];
-		levels = new Level1();
-		level = (Color[][]) levels.getBoard().get(--levelCount);
+		levels = new Levels();
+		level = (Color[][]) levels.getBoard().get(levelCount - 1);
 
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
@@ -126,7 +159,7 @@ public class Gui extends JFrame {
 				squareGrid[i][j] = new Square(this, i, j);
 				squareGrid[i][j].addMouseListener(new SquareMouseListener2(squareGrid[i][j], this));
 				if (level[i][j] != null) {
-					Piece dot = (new Dot(levels.getColor(i, j)));
+					Piece dot = (new Dot(level[i][j]));
 					squareGrid[i][j].setPiece1(dot);
 				}
 
@@ -171,6 +204,7 @@ public class Gui extends JFrame {
 		restart.setBackground(Color.WHITE);
 		prevLevel = new JButton(new ImageIcon("prev.png"));
 		prevLevel.setBackground(Color.WHITE);
+		prevLevel.setEnabled(false);
 		nextLevel = new JButton(new ImageIcon("next.png"));
 		nextLevel.setBackground(Color.WHITE);
 		JPanel midSouth = new JPanel();
@@ -190,7 +224,7 @@ public class Gui extends JFrame {
 		completePanel = new JPanel(new BorderLayout());
 		topPanel = new JPanel(new BorderLayout());
 		topPanel.setBackground(Color.WHITE);
-		boardGrid = new JPanel(new GridLayout(6, 6, 2,2));
+		boardGrid = new JPanel(new GridLayout(6, 6));
 		boardGrid.setBorder(new LineBorder(Color.WHITE, 30));
 		southTopPanel = new JPanel(new BorderLayout());
 		southTopPanel.setBackground(Color.WHITE);
