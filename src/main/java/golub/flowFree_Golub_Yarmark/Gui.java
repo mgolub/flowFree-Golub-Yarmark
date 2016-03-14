@@ -33,9 +33,10 @@ public class Gui extends JFrame {
 	private JButton restart;
 	private JButton prevLevel;
 	private JButton nextLevel;
+	private int levelCount;
 
 	private Square[][] squareGrid;
-	private Level1 level1;
+	private Level1 levels;
 	private Color[][] level;
 
 	private Stack<Square> squaresPath; // this will keep track of the squares
@@ -51,6 +52,7 @@ public class Gui extends JFrame {
 		setLabelButtons();
 		setBoardGame();
 		setRestartButton();
+		setNextButton();
 
 		squaresPath = new Stack<Square>();
 
@@ -62,17 +64,45 @@ public class Gui extends JFrame {
 		pack();
 	}
 
+	private void setNextButton() {
+		nextLevel.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				levelCount++;
+				levelNum.setText("         Level " + ++levelCount);
+				level = (Color[][]) levels.getBoard().get(levelCount);
+				for (int i = 0; i < 6; i++) {
+					for (int j = 0; j < 6; j++) {
+						System.out.println("hi");
+						squareGrid[i][j].setPiece1(null);
+						squareGrid[i][j].setPiece2(null);
+						if (level[i][j] != null) {
+							//Piece dot = (new Dot(levels.getColor(i, j)));
+							//squareGrid[i][j].setPiece1(dot);
+						}
+						squareGrid[i][j].repaint();
+					}
+				}
+				clearMoves();
+		
+				
+			}
+			
+		});
+		
+	}
+
 	private void setRestartButton() {
 		restart.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				level = (Color[][]) level1.getBoard().get(0);
+				level = (Color[][]) levels.getBoard().get(--levelCount);
 				for (int i = 0; i < 6; i++) {
 					for (int j = 0; j < 6; j++) {
 						squareGrid[i][j].setPiece1(null);
 						squareGrid[i][j].setPiece2(null);
 						if (level[i][j] != null) {
-							Piece dot = (new Dot(level1.getColor(i, j)));
+							Piece dot = (new Dot(levels.getColor(i, j)));
 							squareGrid[i][j].setPiece1(dot);
 						}
 						squareGrid[i][j].repaint();
@@ -87,8 +117,8 @@ public class Gui extends JFrame {
 
 	private void setBoardGame() {
 		squareGrid = new Square[6][6];
-		level1 = new Level1();
-		level = (Color[][]) level1.getBoard().get(0);
+		levels = new Level1();
+		level = (Color[][]) levels.getBoard().get(--levelCount);
 
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
@@ -96,7 +126,7 @@ public class Gui extends JFrame {
 				squareGrid[i][j] = new Square(this, i, j);
 				squareGrid[i][j].addMouseListener(new SquareMouseListener2(squareGrid[i][j], this));
 				if (level[i][j] != null) {
-					Piece dot = (new Dot(level1.getColor(i, j)));
+					Piece dot = (new Dot(levels.getColor(i, j)));
 					squareGrid[i][j].setPiece1(dot);
 				}
 
@@ -129,8 +159,8 @@ public class Gui extends JFrame {
 		title.setFont(new Font(title.getFont().getName(), title.getFont().getStyle(), 60));
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		topPanel.add(title, BorderLayout.CENTER);
-
-		levelNum = new JLabel("          Level 1");
+		levelCount = 1;
+		levelNum = new JLabel("          Level " + levelCount);
 		levelNum.setFont(new Font(title.getFont().getName(), title.getFont().getStyle(), 16));
 		southTopPanel.add(levelNum, BorderLayout.WEST);
 		movesCount = 0;
