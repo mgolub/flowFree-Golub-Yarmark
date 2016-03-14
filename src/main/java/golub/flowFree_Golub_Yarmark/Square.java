@@ -50,7 +50,8 @@ public class Square extends JComponent {
 		super.paintComponent(g);
 		g.setColor(this.color);
 		g.fillRect(0, 0, getWidth(), getHeight());
-
+		g.setColor(Color.white);
+		g.drawRect(0, 0, getWidth(), getHeight());
 		if (piece1 != null) {
 			piece1.draw(g, getWidth(), getHeight());
 		}

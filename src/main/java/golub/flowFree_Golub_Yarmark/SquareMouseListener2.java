@@ -23,53 +23,84 @@ public class SquareMouseListener2 implements MouseListener {
 		if (!square.getPath().isEmpty()) {
 			Square previous = square.getPath().peek();
 			Color lineColor = previous.getLineColor();
-			int startX, startY, endX, endY;
 
-			// (entered from top edge)
+			// (entered from bottom edge)
 			if (square.getRow() - previous.getRow() == -1 && square.getCol() == previous.getCol()) {
 
-				// if current square does not have any pieces or it is a dot
+				// if previous square is dot
+				if ((previous.getPiece1().getClass().equals(Dot.class) && square.getPiece1() == null)) {
+					drawLine(lineColor, previous, center, 0, center, center);
+				}
+
+				// if current square does not have any pieces
 				if (square.getPiece1() == null) {
-					drawLine(lineColor, previous, square, center, 79, center, center);
-				} else if ((square.getPiece1().getClass().equals(Dot.class) && square.getPiece1().getColor()
+					drawLine(lineColor, square, center, 79, center, center);
+				}
+
+				// if the current square is a dot
+				if ((square.getPiece1().getClass().equals(Dot.class) && square.getPiece1().getColor()
 						.equals(previous.getLineColor()))) {
-					drawLine(lineColor, previous, square, center, 79, center, center);
+					drawLine(lineColor, square, center, 79, center, center);
 				}
 			}
 
-			// (entered from bottom edge)
+			// (entered from top edge)
 			else if (square.getRow() - previous.getRow() == 1 && square.getCol() == previous.getCol()) {
 
-				// if current square does not have any pieces or it is a dot
+				// if previous square is dot
+				if ((previous.getPiece1().getClass().equals(Dot.class) && square.getPiece1() == null)) {
+					drawLine(lineColor, previous, center, center, center, 79);
+				}
+
+				// if current square does not have any pieces
 				if (square.getPiece1() == null) {
-					drawLine(lineColor, previous, square, center, 0, center, center);
-				} else if ((square.getPiece1().getClass().equals(Dot.class) && square.getPiece1().getColor()
+					drawLine(lineColor, square, center, 0, center, center);
+				}
+
+				// if the current square is a dot
+				if ((square.getPiece1().getClass().equals(Dot.class) && square.getPiece1().getColor()
 						.equals(previous.getLineColor()))) {
-					drawLine(lineColor, previous, square, center, 0, center, center);
+					drawLine(lineColor, square, center, 0, center, center);
 				}
 			}
 
 			// (entered from left edge)
 			else if (square.getCol() - previous.getCol() == -1 && square.getRow() == previous.getRow()) {
 
+				// if previous square is dot
+				if ((previous.getPiece1().getClass().equals(Dot.class) && square.getPiece1() == null)) {
+					drawLine(lineColor, previous, 0, center, center, center);
+				}
+
 				// if current square does not have any pieces or it is a dot
 				if (square.getPiece1() == null) {
-					drawLine(lineColor, previous, square, 79, center, center, center);
-				} else if ((square.getPiece1().getClass().equals(Dot.class) && square.getPiece1().getColor()
+					drawLine(lineColor, square, 79, center, center, center);
+				}
+
+				// if the current square is a dot
+				if ((square.getPiece1().getClass().equals(Dot.class) && square.getPiece1().getColor()
 						.equals(previous.getLineColor()))) {
-					drawLine(lineColor, previous, square, 79, center, center, center);
+					drawLine(lineColor, square, 79, center, center, center);
 				}
 			}
 
 			// (entered from right edge)
 			else if (square.getCol() - previous.getCol() == 1 && square.getRow() == previous.getRow()) {
 
+				// if previous square is dot
+				if ((previous.getPiece1().getClass().equals(Dot.class) && square.getPiece1() == null)) {
+					drawLine(lineColor, previous, center, center, 79, center);
+				}
+
 				// if current square does not have any pieces or it is a dot
 				if (square.getPiece1() == null) {
-					drawLine(lineColor, previous, square, 0, center, center, center);
-				} else if ((square.getPiece1().getClass().equals(Dot.class) && square.getPiece1().getColor()
+					drawLine(lineColor, square, 0, center, center, center);
+				}
+
+				// if the current square is a dot
+				if ((square.getPiece1().getClass().equals(Dot.class) && square.getPiece1().getColor()
 						.equals(previous.getLineColor()))) {
-					drawLine(lineColor, previous, square, 0, center, center, center);
+					drawLine(lineColor, square, 0, center, center, center);
 				}
 			}
 		}
@@ -130,12 +161,22 @@ public class SquareMouseListener2 implements MouseListener {
 
 	}
 
-	private void drawLine(Color lineColor, Square previousSquare, Square currentSquare, int startX, int startY,
-			int endX, int endY) {
-		square.setLineColor(lineColor);
+	// up 38, 38, 38, 0
+	// up 38, 38, 0, 38
+	// down 38, 38, 38, 79
+	// down 38, 79, 38, 38
+	// from left 0, 38, 38, 38
+	// from left 79, 38, 38, 38
+	// to right 38, 38, 38, 79
+	// to right 0, 38, 38, 38
+	private void drawLine(Color lineColor, Square currentSquare, int startX, int startY, int endX, int endY) {
+		currentSquare.setLineColor(lineColor);
 		square.getPath().push(this.square);
-		previousSquare.setPiece1(new Line(Color.orange, startX, startY, endX, endY));
-		square.setPiece1(new Line(lineColor, startX, startY, endX, endY));
-		square.repaint();
+		// if (previousSquare.getPiece1().getClass().equals(Dot.class)) {
+		// previousSquare.setPiece1(new Line(Color.orange, ));
+		// previousSquare.repaint();
+		// }
+		currentSquare.setPiece1(new Line(lineColor, startX, startY, endX, endY));
+		currentSquare.repaint();
 	}
 }

@@ -160,7 +160,7 @@ public class Gui extends JFrame {
 		completePanel = new JPanel(new BorderLayout());
 		topPanel = new JPanel(new BorderLayout());
 		topPanel.setBackground(Color.WHITE);
-		boardGrid = new JPanel(new GridLayout(6, 6, 2,2));
+		boardGrid = new JPanel(new GridLayout(6, 6));
 		boardGrid.setBorder(new LineBorder(Color.WHITE, 30));
 		southTopPanel = new JPanel(new BorderLayout());
 		southTopPanel.setBackground(Color.WHITE);
