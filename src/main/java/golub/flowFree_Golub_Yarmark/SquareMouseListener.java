@@ -8,7 +8,7 @@ import java.util.Stack;
 public class SquareMouseListener implements MouseListener {
 
 	private Square square;
-	private Square previous;
+	// private Square previous;
 	private Gui gui;
 	private final int center = 38;
 
@@ -23,8 +23,7 @@ public class SquareMouseListener implements MouseListener {
 	public void mouseEntered(MouseEvent event) {
 
 		if (!square.getPath().isEmpty()) {
-			// Square
-			previous = square.getPath().peek();
+			Square previous = square.getPath().peek();
 			Color lineColor = previous.getLineColor();
 
 			// (entered from bottom edge)
@@ -37,10 +36,6 @@ public class SquareMouseListener implements MouseListener {
 				if (checkCurrentSquare()) {
 					drawLine(lineColor, previous, center, 0, center, center);
 					drawLine(lineColor, square, center, 79, center, center);
-				}
-
-				if (square.getPath().size() > 1) {
-					checkBacktrack();
 				}
 
 				if (checkCurrentDot(previous)) {
@@ -61,10 +56,6 @@ public class SquareMouseListener implements MouseListener {
 					drawLine(lineColor, square, center, 0, center, center);
 				}
 
-				if (square.getPath().size() > 1) {
-					checkBacktrack();
-				}
-
 				if (checkCurrentDot(previous)) {
 					drawLine(lineColor, previous, center, center, center, 79);
 					drawLine(lineColor, square, center, 0, center, center);
@@ -83,10 +74,6 @@ public class SquareMouseListener implements MouseListener {
 					drawLine(lineColor, square, 79, center, center, center);
 				}
 
-				if (square.getPath().size() > 1) {
-					checkBacktrack();
-				}
-
 				if (checkCurrentDot(previous)) {
 					drawLine(lineColor, previous, 0, center, center, center);
 					drawLine(lineColor, square, 79, center, center, center);
@@ -103,10 +90,6 @@ public class SquareMouseListener implements MouseListener {
 				if (checkCurrentSquare()) {
 					drawLine(lineColor, previous, center, center, 79, center);
 					drawLine(lineColor, square, 0, center, center, center);
-				}
-
-				if (square.getPath().size() > 1) {
-					checkBacktrack();
 				}
 
 				if (checkCurrentDot(previous)) {
@@ -154,15 +137,23 @@ public class SquareMouseListener implements MouseListener {
 		// check for backtrack
 		// the 2nd element from top of stack will be = to current square
 		Stack<Square> stack = square.getPath();
+		// stack needs at least 3 elements in order to be backtracking
 		if (this.square.equals(stack.get(stack.size() - 2))) {
-			square.getPath().pop();
+			Square previousSquare = square.getPath().pop();
 			// reset piece1 in previous square if it is not a dot
-			if (!previous.getPiece1().getClass().equals(Dot.class)) {
-				previous.setPiece1(null);
-			}
+			// if (!previousTrack.getPiece1().getClass().equals(Dot.class)) {
+			previousSquare.setPiece1(null);
+			// }
 			square.setPiece2(null);
+			previousSquare.repaint();
 			square.repaint();
-			previous.repaint();
+
+		} else if (this.square.getClass().equals(Dot.class)) {
+			Square previousTrack = square.getPath().pop();
+			previousTrack.setPiece1(null);
+			square.setPiece2(null);
+			previousTrack.repaint();
+			square.repaint();
 		}
 	}
 
@@ -178,6 +169,10 @@ public class SquareMouseListener implements MouseListener {
 		// if current square does not have any pieces
 		if (square.getPiece1() == null) {
 			return true;
+		} else {
+			if (square.getPath().size() > 1) {
+				checkBacktrack();
+			}
 		}
 		return false;
 	}
@@ -186,7 +181,7 @@ public class SquareMouseListener implements MouseListener {
 		// if the current square is a dot
 		if ((square.getPiece1().getClass().equals(Dot.class) && square.getPiece1().getColor()
 				.equals(previous.getLineColor()))) {
-			return true;
+			// return true;
 		}
 		return false;
 	}
