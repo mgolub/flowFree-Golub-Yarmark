@@ -24,6 +24,7 @@ public class SquareMouseListener implements MouseListener {
 		if (!square.getPath().isEmpty()) {
 			Square previous = square.getPath().peek();
 			Color lineColor = previous.getLineColor();
+			boolean backtrack = false;
 
 			// (entered from bottom edge)
 			if (square.getRow() - previous.getRow() == -1 && square.getCol() == previous.getCol()) {
@@ -35,12 +36,18 @@ public class SquareMouseListener implements MouseListener {
 				if (checkCurrentSquare()) {
 					drawLine(lineColor, previous, center, 0, center, center);
 					drawLine(lineColor, square, center, 79, center, center);
+				} else {
+					if (square.getPath().size() > 1) {
+						backtrack = checkBacktrack();
+					}
 				}
 
 				if (checkCurrentDot(previous)) {
-					drawLine(lineColor, previous, center, 0, center, center);
-					drawLine(lineColor, square, center, 79, center, center);
-					square.getPath().clear();
+					if (!backtrack) {
+						drawLine(lineColor, previous, center, 0, center, center);
+						drawLine(lineColor, square, center, 79, center, center);
+						square.getPath().clear();
+					}
 				}
 			}
 
@@ -54,12 +61,18 @@ public class SquareMouseListener implements MouseListener {
 				if (checkCurrentSquare()) {
 					drawLine(lineColor, previous, center, center, center, 79);
 					drawLine(lineColor, square, center, 0, center, center);
+				} else {
+					if (square.getPath().size() > 1) {
+						backtrack = checkBacktrack();
+					}
 				}
 
 				if (checkCurrentDot(previous)) {
-					drawLine(lineColor, previous, center, center, center, 79);
-					drawLine(lineColor, square, center, 0, center, center);
-					square.getPath().clear();
+					if (!backtrack) {
+						drawLine(lineColor, previous, center, center, center, 79);
+						drawLine(lineColor, square, center, 0, center, center);
+						square.getPath().clear();
+					}
 				}
 			}
 
@@ -73,12 +86,18 @@ public class SquareMouseListener implements MouseListener {
 				if (checkCurrentSquare()) {
 					drawLine(lineColor, previous, 0, center, center, center);
 					drawLine(lineColor, square, 79, center, center, center);
+				} else {
+					if (square.getPath().size() > 1) {
+						backtrack = checkBacktrack();
+					}
 				}
 
 				if (checkCurrentDot(previous)) {
-					drawLine(lineColor, previous, 0, center, center, center);
-					drawLine(lineColor, square, 79, center, center, center);
-					square.getPath().clear();
+					if (!backtrack) {
+						drawLine(lineColor, previous, 0, center, center, center);
+						drawLine(lineColor, square, 79, center, center, center);
+						square.getPath().clear();
+					}
 				}
 			}
 
@@ -92,12 +111,18 @@ public class SquareMouseListener implements MouseListener {
 				if (checkCurrentSquare()) {
 					drawLine(lineColor, previous, center, center, 79, center);
 					drawLine(lineColor, square, 0, center, center, center);
+				} else {
+					if (square.getPath().size() > 1) {
+						backtrack = checkBacktrack();
+					}
 				}
 
 				if (checkCurrentDot(previous)) {
-					drawLine(lineColor, previous, center, center, 79, center);
-					drawLine(lineColor, square, 0, center, center, center);
-					square.getPath().clear();
+					if (!backtrack) {
+						drawLine(lineColor, previous, center, center, 79, center);
+						drawLine(lineColor, square, 0, center, center, center);
+						square.getPath().clear();
+					}
 				}
 			}
 		}
@@ -147,11 +172,9 @@ public class SquareMouseListener implements MouseListener {
 		// if current square does not have any pieces
 		if (square.getPiece1() == null) {
 			return true;
-		} else {
-			if (square.getPath().size() > 1) {
-				checkBacktrack();
-			}
-		}
+		} /*
+		 * else { if (square.getPath().size() > 1) { checkBacktrack(); } }
+		 */
 		return false;
 	}
 
@@ -164,7 +187,7 @@ public class SquareMouseListener implements MouseListener {
 		return false;
 	}
 
-	private void checkBacktrack() {
+	private boolean checkBacktrack() {
 		// check for backtrack
 		// the 2nd element from top of stack will = current square
 		Stack<Square> stack = square.getPath();
@@ -175,6 +198,8 @@ public class SquareMouseListener implements MouseListener {
 			square.setPiece2(null);
 			previousSquare.repaint();
 			square.repaint();
+			return true;
 		}
+		return false;
 	}
 }
