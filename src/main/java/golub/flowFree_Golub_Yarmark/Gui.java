@@ -35,16 +35,13 @@ public class Gui extends JFrame {
 	private JButton prevLevel;
 	private JButton nextLevel;
 	private int levelCount;
-
+	
 	private Square[][] squareGrid;
 	private Levels levels;
 	private Color[][] level;
-
 	private boolean won;
-
 	private Stack<Square> squaresPath; // this will keep track of the squares
 										// you go into as you create a path
-
 	public Gui() {
 		setTitle("Flow Free");
 		setSize(800, 600);
@@ -79,10 +76,10 @@ public class Gui extends JFrame {
 			}
 		}
 
-		if (won == true){
-			String message = "PERFECT! \n You completed the level in " + movesCount + " moves" ;
-		JOptionPane.showMessageDialog(completePanel, message, "Completed Level", JOptionPane.PLAIN_MESSAGE);
-		nextLevel.doClick();
+		if (won == true) {
+			String message = "PERFECT! \n You completed the level in " + movesCount + " moves";
+			JOptionPane.showMessageDialog(completePanel, message, "Completed Level", JOptionPane.PLAIN_MESSAGE);
+			nextLevel.doClick();
 		}
 		return won;
 	}
@@ -110,11 +107,8 @@ public class Gui extends JFrame {
 					}
 				}
 				clearMoves();
-
 			}
-
 		});
-
 	}
 
 	private void setNextButton() {
@@ -140,11 +134,8 @@ public class Gui extends JFrame {
 					}
 				}
 				clearMoves();
-
 			}
-
 		});
-
 	}
 
 	private void setRestartButton() {
@@ -165,9 +156,7 @@ public class Gui extends JFrame {
 				}
 				clearMoves();
 			}
-
 		});
-
 	}
 
 	private void setBoardGame() {
@@ -184,7 +173,6 @@ public class Gui extends JFrame {
 					Piece dot = (new Dot(level[i][j]));
 					squareGrid[i][j].setPiece1(dot);
 				}
-
 				squarePanel.add(squareGrid[i][j], BorderLayout.CENTER);
 				squarePanel.setPreferredSize(new Dimension(80, 80));
 				boardGrid.add(squarePanel);
@@ -239,7 +227,6 @@ public class Gui extends JFrame {
 		south.setPreferredSize(new Dimension(2, 2));
 		southTopPanel.add(south, BorderLayout.SOUTH);
 		topPanel.add(southTopPanel, BorderLayout.SOUTH);
-
 		won = false;
 	}
 

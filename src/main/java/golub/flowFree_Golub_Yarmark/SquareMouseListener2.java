@@ -102,37 +102,6 @@ public class SquareMouseListener2 implements MouseListener {
 			Square previous = square.getPath().peek();
 			Color lineColor = previous.getLineColor();
 			int startX, startY, endX, endY;
-			/*
-			 * // (exited from top edge) // new square is up/down/right/left of
-			 * previous if (square.getRow() - previous.getRow() == -1 &&
-			 * square.getCol() == previous.getCol()) { startX = center; startY =
-			 * center; endX = center; endY = 0; previous.setPiece2(new
-			 * Line(lineColor, startX, startY, endX, endY)); previous.repaint();
-			 * square.getPath().push(square); endX = center; endY = -1; startX =
-			 * center; startY = center; System.out.println(
-			 * "remember to use or delete the next line"); previous.repaint();
-			 * square.setPiece2(new Line(lineColor, startX, startY, endX,
-			 * endY)); square.repaint(); // } } // (exited from bottom edge) if
-			 * (square.getRow() - previous.getRow() == 1 && square.getCol() ==
-			 * previous.getCol()) { if (previous.getPiece1() != null) { endX =
-			 * center; endY = 80; startX = center; startY = center;
-			 * square.setPiece2(new Line(lineColor, startX, startY, endX,
-			 * endY)); square.repaint(); }
-			 * 
-			 * } // (exited from left edge) if (square.getCol() -
-			 * previous.getCol() == -1 && square.getRow() == previous.getRow())
-			 * { if (previous.getPiece1() != null) { endX = -1; endY = center;
-			 * startX = center; startY = center; square.setPiece2(new
-			 * Line(lineColor, startX, startY, endX, endY)); square.repaint(); }
-			 * 
-			 * } // (exited from right edge) if (square.getCol() -
-			 * previous.getCol() == 1 && square.getRow() == previous.getRow()) {
-			 * if (previous.getPiece1() != null) { endX = 80; endY = center;
-			 * startX = center; startY = center; square.setPiece2(new
-			 * Line(lineColor, startX, startY, endX, endY)); square.repaint(); }
-			 * 
-			 * }
-			 */
 		}
 	}
 
@@ -150,7 +119,6 @@ public class SquareMouseListener2 implements MouseListener {
 	public void mouseReleased(MouseEvent arg0) {
 		square.clearPathStack();
 		gui.isWinner();
-	
 
 	}
 

@@ -179,8 +179,8 @@ public class SquareMouseListener implements MouseListener {
 
 	private boolean checkCurrentDot(Square previous) {
 		// if the current square is a dot
-		if ((square.getPiece1().getClass().equals(Dot.class) && square.getPiece1().getColor()
-				.equals(previous.getLineColor()))) {
+		if ((square.getPiece1().getClass().equals(Dot.class)
+				&& square.getPiece1().getColor().equals(previous.getLineColor()))) {
 			// return true;
 		}
 		return false;
