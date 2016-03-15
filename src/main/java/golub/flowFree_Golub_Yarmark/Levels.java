@@ -30,23 +30,6 @@ public class Levels {
 		levels.add(level5);
 	}
 
-	private Color[][] level5() {
-		level5 = new Color[6][6];
-		level5[1][0] = colors[4];
-		level5[1][1] = colors[3];
-		level5[1][2] = colors[1];
-		level5[1][3] = colors[2];
-		level5[2][0] = colors[3];
-		level5[2][3] = colors[0];
-		level5[3][0] = colors[0];
-		level5[3][5] = colors[4];
-		level5[4][1] = colors[1];
-		level5[4][4] = colors[2];
-		level5[4][5] = colors[5];
-		level5[5][3] = colors[5];
-		return level5;
-	}
-
 	private void fillcolorArray() {
 		colors[0] = Color.GREEN;
 		colors[1] = Color.YELLOW;
@@ -114,6 +97,23 @@ public class Levels {
 		level4[4][4] = colors[3];
 		level4[5][4] = colors[0];
 		return level4;
+	}
+
+	private Color[][] level5() {
+		level5 = new Color[6][6];
+		level5[1][0] = colors[4];
+		level5[1][1] = colors[3];
+		level5[1][2] = colors[1];
+		level5[1][3] = colors[2];
+		level5[2][0] = colors[3];
+		level5[2][3] = colors[0];
+		level5[3][0] = colors[0];
+		level5[3][5] = colors[4];
+		level5[4][1] = colors[1];
+		level5[4][4] = colors[2];
+		level5[4][5] = colors[5];
+		level5[5][3] = colors[5];
+		return level5;
 	}
 
 	public ArrayList<Color[][]> getBoard() {
