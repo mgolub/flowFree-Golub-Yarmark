@@ -23,7 +23,7 @@ public class Line extends Piece {
 	public void draw(Graphics g, int width, int height) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(25));
-		g2.setColor(getColor());
+		g2.setColor(getColor().darker());
 		g2.drawLine(startX, startY, endX, endY);
 
 	}

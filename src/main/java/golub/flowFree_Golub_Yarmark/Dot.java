@@ -11,7 +11,7 @@ public class Dot extends Piece {
 
 	@Override
 	public void draw(Graphics g, int width, int height) {
-		g.setColor(getColor());
+		g.setColor(getColor().darker());
 		g.fillOval(12, 12, width - (width / 3), height - (height / 3));
 
 	}
