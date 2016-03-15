@@ -172,10 +172,13 @@ public class SquareMouseListener implements MouseListener {
 		// if current square does not have any pieces
 		if (square.getPiece1() == null) {
 			return true;
-		} /*
-		 * else { if (square.getPath().size() > 1) { checkBacktrack(); } }
-		 */
-		return false;
+		} else if (square.getPiece1() != null && square.getPiece1().getClass() != Dot.class
+				&& square.getPiece2() == null){
+			square.setPiece2(square.getPiece1());
+			square.setPiece1(null);
+			return true;
+		}
+			return false;
 	}
 
 	private boolean checkCurrentDot(Square previous) {
