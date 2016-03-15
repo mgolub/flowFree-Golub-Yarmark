@@ -12,7 +12,7 @@ public class Square extends JComponent {
 
 	private static final long serialVersionUID = 1L;
 
-	private final Color color = Color.BLACK;
+	private Color color = Color.BLACK;
 	private Piece piece1;
 	private Piece piece2;
 	private Gui wholeBoard;

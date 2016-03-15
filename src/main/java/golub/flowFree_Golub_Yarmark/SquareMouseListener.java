@@ -1,6 +1,7 @@
 package golub.flowFree_Golub_Yarmark;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Stack;
@@ -133,6 +134,7 @@ public class SquareMouseListener implements MouseListener {
 
 	public void mousePressed(MouseEvent event) {
 		if (square.getPiece1() != null) {
+			gui.setCursor(Cursor.HAND_CURSOR);
 			square.pushPath();
 			Square s = square.getPath().peek();
 			// only need a getPiece1 method because piece2's color will always
@@ -143,6 +145,7 @@ public class SquareMouseListener implements MouseListener {
 	}
 
 	public void mouseReleased(MouseEvent arg0) {
+		gui.setCursor(Cursor.DEFAULT_CURSOR);
 		square.clearPathStack();
 		gui.isWinner();
 	}
