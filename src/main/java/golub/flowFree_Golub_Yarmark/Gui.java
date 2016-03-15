@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -38,6 +39,8 @@ public class Gui extends JFrame {
 	private Square[][] squareGrid;
 	private Levels levels;
 	private Color[][] level;
+	
+	private boolean won;
 
 	private Stack<Square> squaresPath; // this will keep track of the squares
 										// you go into as you create a path
@@ -65,6 +68,23 @@ public class Gui extends JFrame {
 		pack();
 	}
 
+	public boolean isWinner(){
+		won = true;
+		for (int i = 0; i < 6; i++){
+			for (int j = 0; j < 6; j++){
+				if (squareGrid[i][j].getPiece1()== null || squareGrid[i][j].getPiece2() == null){
+					won = false;
+					break;
+				}
+			}
+		}
+		if (won == true){
+			String message = "PERFECT! \n You completed the level in " + movesCount + " moves" ;
+		JOptionPane.showMessageDialog(completePanel, message);
+		nextLevel.doClick();
+		}
+		return won;
+	}
 	private void setPrevButton() {
 		prevLevel.addActionListener(new ActionListener() {
 
@@ -218,6 +238,8 @@ public class Gui extends JFrame {
 		south.setPreferredSize(new Dimension(2, 2));
 		southTopPanel.add(south, BorderLayout.SOUTH);
 		topPanel.add(southTopPanel, BorderLayout.SOUTH);
+		
+		won = false;
 	}
 
 	private void setPanels() {
