@@ -98,4 +98,7 @@ public class Square extends JComponent {
 		// based on piece1
 		return piece1;
 	}
+	public Piece getPiece2(){
+		return piece2;
+	}
 }
