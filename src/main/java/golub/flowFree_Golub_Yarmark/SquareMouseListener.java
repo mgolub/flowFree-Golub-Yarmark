@@ -33,7 +33,7 @@ public class SquareMouseListener implements MouseListener {
 					drawLine(lineColor, previous, center, 0, center, center);
 				}
 
-				if (checkCurrentSquare()) {
+				if (checkCurrentSquare(previous)) {
 					drawLine(lineColor, previous, center, 0, center, center);
 					drawLine(lineColor, square, center, 79, center, center);
 				} else {
@@ -58,7 +58,7 @@ public class SquareMouseListener implements MouseListener {
 					drawLine(lineColor, previous, center, center, center, 79);
 				}
 
-				if (checkCurrentSquare()) {
+				if (checkCurrentSquare(previous)) {
 					drawLine(lineColor, previous, center, center, center, 79);
 					drawLine(lineColor, square, center, 0, center, center);
 				} else {
@@ -83,7 +83,7 @@ public class SquareMouseListener implements MouseListener {
 					drawLine(lineColor, previous, 0, center, center, center);
 				}
 
-				if (checkCurrentSquare()) {
+				if (checkCurrentSquare(previous)) {
 					drawLine(lineColor, previous, 0, center, center, center);
 					drawLine(lineColor, square, 79, center, center, center);
 				} else {
@@ -108,7 +108,7 @@ public class SquareMouseListener implements MouseListener {
 					drawLine(lineColor, previous, center, center, 79, center);
 				}
 
-				if (checkCurrentSquare()) {
+				if (checkCurrentSquare(previous)) {
 					drawLine(lineColor, previous, center, center, 79, center);
 					drawLine(lineColor, square, 0, center, center, center);
 				} else {
@@ -168,17 +168,17 @@ public class SquareMouseListener implements MouseListener {
 		return false;
 	}
 
-	private boolean checkCurrentSquare() {
+	private boolean checkCurrentSquare(Square previous) {
 		// if current square does not have any pieces
 		if (square.getPiece1() == null) {
 			return true;
-		} else if (square.getPiece1() != null && square.getPiece1().getClass() != Dot.class
-				&& square.getPiece2() == null){
+		} else if (square.getPiece1().getClass() != Dot.class && square.getPiece2() == null
+				&& square.getLineColor().equals(previous.getLineColor())) {
 			square.setPiece2(square.getPiece1());
 			square.setPiece1(null);
 			return true;
 		}
-			return false;
+		return false;
 	}
 
 	private boolean checkCurrentDot(Square previous) {
