@@ -133,6 +133,7 @@ public class SquareMouseListener implements MouseListener {
 
 	public void mouseReleased(MouseEvent arg0) {
 		square.clearPathStack();
+		gui.isWinner();
 
 	}
 

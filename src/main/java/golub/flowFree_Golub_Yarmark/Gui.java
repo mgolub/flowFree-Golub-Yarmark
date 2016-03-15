@@ -80,7 +80,7 @@ public class Gui extends JFrame {
 		}
 		if (won == true){
 			String message = "PERFECT! \n You completed the level in " + movesCount + " moves" ;
-		JOptionPane.showMessageDialog(completePanel, message);
+		JOptionPane.showMessageDialog(completePanel, message, "Completed Level", JOptionPane.PLAIN_MESSAGE);
 		nextLevel.doClick();
 		}
 		return won;
