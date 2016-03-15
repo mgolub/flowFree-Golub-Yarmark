@@ -52,6 +52,10 @@ public class Square extends JComponent {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.setColor(this.color);
+		if (piece1 != null){
+			Color lighterShade = lighterShade(piece1.getColor());
+			g.setColor(lighterShade);
+		}
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.white);
 		g.drawRect(0, 0, getWidth(), getHeight());
@@ -62,6 +66,17 @@ public class Square extends JComponent {
 			piece2.draw(g, getWidth(), getHeight());
 		}
 	}
+	
+	private Color lighterShade(Color color){
+		Color lighter;
+		double r = color.getRed() + (255-color.getRed()) * .5;
+		double g = color.getGreen() + (255-color.getGreen()) * .5;
+		double b = color.getBlue() + (255-color.getBlue()) *  .5;
+		lighter = new Color((int)r,(int)g,(int)b);
+		return lighter;
+	}
+
+
 
 	public void addExitLine(Point exit) {
 	}
