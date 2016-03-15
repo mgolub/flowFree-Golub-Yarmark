@@ -3,6 +3,7 @@ package golub.flowFree_Golub_Yarmark;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.util.Stack;
 
 import javax.swing.JComponent;
@@ -94,11 +95,10 @@ public class Square extends JComponent {
 	}
 
 	public Piece getPiece1() {
-		// only need a getPiece1 method because piece2's color will always be
-		// based on piece1
 		return piece1;
 	}
-	public Piece getPiece2(){
+
+	public Piece getPiece2() {
 		return piece2;
 	}
 }
