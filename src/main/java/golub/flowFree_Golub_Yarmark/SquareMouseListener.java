@@ -10,7 +10,7 @@ public class SquareMouseListener implements MouseListener {
 
 	private Square square;
 	private Gui gui;
-	private final int center = 38;
+	private final int center = 40;
 
 	public SquareMouseListener(Square component, Gui gui) {
 		square = component;
