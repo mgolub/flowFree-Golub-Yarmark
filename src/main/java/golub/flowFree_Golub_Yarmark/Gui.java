@@ -5,10 +5,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Stack;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -35,13 +37,14 @@ public class Gui extends JFrame {
 	private JButton prevLevel;
 	private JButton nextLevel;
 	private int levelCount;
-	
+
 	private Square[][] squareGrid;
 	private Levels levels;
 	private Color[][] level;
 	private boolean won;
 	private Stack<Square> squaresPath; // this will keep track of the squares
 										// you go into as you create a path
+
 	public Gui() {
 		setTitle("Flow Free");
 		setSize(800, 600);
@@ -209,8 +212,17 @@ public class Gui extends JFrame {
 		movesNum = new JLabel("Moves: " + movesCount + "          ");
 		movesNum.setFont(new Font(title.getFont().getName(), title.getFont().getStyle(), 16));
 		southTopPanel.add(movesNum, BorderLayout.EAST);
-		restart = new JButton(new ImageIcon("restart.png"));
+		// restart = new JButton(new ImageIcon("restart.png"));
+
+		restart = new JButton();
+		ImageIcon ii = new ImageIcon(this.getClass().getResource("restart.png"));
+		Image image = ii.getImage();
+		restart.setIcon(ii);
 		restart.setBackground(Color.WHITE);
+		/*
+		 * String fileName = "restart.png"; ImageIcon image = new
+		 * ImageIcon(fileName); restart = new JButton(new ImageIcon(fileName));
+		 */
 		prevLevel = new JButton(new ImageIcon("prev.png"));
 		prevLevel.setBackground(Color.WHITE);
 		prevLevel.setEnabled(false);
